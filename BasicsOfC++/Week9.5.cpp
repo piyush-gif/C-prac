@@ -117,10 +117,10 @@
 
 
 
-struct Node {
-	std::string data;
-	Node* next;
-};
+//struct Node {
+//	std::string data;
+//	Node* next;
+//};
 
 //void add(std::string& name, Node*& head) {
 //	Node* temp = head;
@@ -218,5 +218,63 @@ struct Node {
 
 	
 
+//}
+
+/* insert a int into a nth positon in the linked list*/
+
+#include<iostream>
+struct Node {
+	int data;
+	Node* next;
+};
+
+void nth(int& pos, Node*& head, int& num) {
+
+	Node* newNode = new Node{ num, nullptr };
+
+	if (pos == 1) {
+		newNode->next = head;
+		head = newNode;
+		return;
+	}
+	Node* prev = nullptr;
+	Node* curr = head;
+	
+
+	for (int i = 1; i < pos && curr!= nullptr ; i++) {
+		prev = curr;
+		curr = curr->next;
+	}
+
+	if (prev != nullptr) {
+		prev->next = newNode;
+		newNode->next = curr;
+	}
 }
 
+void print(Node* head) {
+	while (head != nullptr) {
+		std::cout << head->data << " ";
+		head = head->next;
+	}
+	std::cout << std::endl;
+}
+
+int main() {
+	Node* head = new Node{ 1, nullptr };
+	head->next = new Node{ 2, nullptr };
+	head->next->next = new Node{ 3, nullptr };
+
+	int pos, num;
+	std::cout << "Enter the nth position you want the int to be at" << std::endl;
+	std::cin >> pos;
+	std::cout << "Enter the number that you want to add" << std::endl;
+	std::cin >> num;
+
+	nth(pos, head, num);
+
+	std::cout << "updated list...";
+	print(head);
+	return 0;
+
+}
