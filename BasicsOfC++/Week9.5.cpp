@@ -252,7 +252,15 @@ void nth(int& pos, Node*& head, int& num) {
 	}
 }
 
-void print(Node* head) {
+void revprint(Node* head) {
+	if (head == nullptr) {
+		return;
+	}
+	revprint(head->next);
+	std::cout << head->data;
+}
+
+void print(Node*& head) {
 	while (head != nullptr) {
 		std::cout << head->data << " ";
 		head = head->next;
@@ -265,7 +273,7 @@ int main() {
 	head->next = new Node{ 2, nullptr };
 	head->next->next = new Node{ 3, nullptr };
 
-	int pos, num;
+	/*int pos, num;
 	std::cout << "Enter the nth position you want the int to be at" << std::endl;
 	std::cin >> pos;
 	std::cout << "Enter the number that you want to add" << std::endl;
@@ -274,7 +282,9 @@ int main() {
 	nth(pos, head, num);
 
 	std::cout << "updated list...";
-	print(head);
+	print(head);*/
+
+	revprint(head);
 	return 0;
 
 }
