@@ -220,7 +220,7 @@
 
 //}
 
-/* insert a int into a nth positon in the linked list*/
+/* insert a int into a nth positon in the linked list and reverse the linked list using rec*/
 
 #include<iostream>
 struct Node {
@@ -250,6 +250,18 @@ void nth(int& pos, Node*& head, int& num) {
 		prev->next = newNode;
 		newNode->next = curr;
 	}
+}
+Node* reverseList(Node* head) {
+	if (head == nullptr || head->next == nullptr) {
+		return head;
+	}
+
+	Node* rest = reverseList(head->next);
+
+	head->next->next = head;
+	head->next = nullptr;
+
+	return rest;
 }
 
 void revprint(Node* head) {
