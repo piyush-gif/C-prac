@@ -222,81 +222,203 @@
 
 /* insert a int into a nth positon in the linked list and reverse the linked list using rec*/
 
-#include<iostream>
+//#include<iostream>
+//struct Node {
+//	int data;
+//	Node* next;
+//};
+//
+//void nth(int& pos, Node*& head, int& num) {
+//
+//	Node* newNode = new Node{ num, nullptr };
+//
+//	if (pos == 1) {
+//		newNode->next = head;
+//		head = newNode;
+//		return;
+//	}
+//	Node* prev = nullptr;
+//	Node* curr = head;
+//	
+//
+//	for (int i = 1; i < pos && curr!= nullptr ; i++) {
+//		prev = curr;
+//		curr = curr->next;
+//	}
+//
+//	if (prev != nullptr) {
+//		prev->next = newNode;
+//		newNode->next = curr;
+//	}
+//}
+//Node* reverseList(Node* head) {
+//	if (head == nullptr || head->next == nullptr) {
+//		return head;
+//	}
+//
+//	Node* rest = reverseList(head->next);
+//
+//	head->next->next = head;
+//	head->next = nullptr;
+//
+//	return rest;
+//}
+//
+//void revprint(Node* head) {
+//	if (head == nullptr) {
+//		return;
+//	}
+//	revprint(head->next);
+//	std::cout << head->data;
+//}
+//
+//void print(Node*& head) {
+//	while (head != nullptr) {
+//		std::cout << head->data << " ";
+//		head = head->next;
+//	}
+//	std::cout << std::endl;
+//}
+//
+//int main() {
+//	Node* head = new Node{ 1, nullptr };
+//	head->next = new Node{ 2, nullptr };
+//	head->next->next = new Node{ 3, nullptr };
+//
+//	/*int pos, num;
+//	std::cout << "Enter the nth position you want the int to be at" << std::endl;
+//	std::cin >> pos;
+//	std::cout << "Enter the number that you want to add" << std::endl;
+//	std::cin >> num;
+//
+//	nth(pos, head, num);
+//
+//	std::cout << "updated list...";
+//	print(head);*/
+//
+//	revprint(head);
+//	return 0;
+//
+//}
+
+//🔹 Project 1: Student Record Manager(Singly Linked List)
+//
+//Concept : Manage a list of students where each student has :
+//
+//ID(int)
+//
+//Name(string)
+//
+//Grade(float)
+//
+//Features:
+//
+//Add a student(insert at end or specific position).
+//
+//Delete a student by ID.
+//
+//Search a student by ID.
+//
+//Update student grade.
+//
+//Display all students in order.
+//
+//Count total students.
 struct Node {
-	int data;
+	int id;
+	std::string name;
+	float grade;
 	Node* next;
 };
 
-void nth(int& pos, Node*& head, int& num) {
+void add(Node*& head, int& id, std::string& name, int& grade, int& pos) {
 
-	Node* newNode = new Node{ num, nullptr };
-
-	if (pos == 1) {
-		newNode->next = head;
-		head = newNode;
-		return;
-	}
-	Node* prev = nullptr;
-	Node* curr = head;
-	
-
-	for (int i = 1; i < pos && curr!= nullptr ; i++) {
-		prev = curr;
-		curr = curr->next;
-	}
-
-	if (prev != nullptr) {
-		prev->next = newNode;
-		newNode->next = curr;
-	}
-}
-Node* reverseList(Node* head) {
-	if (head == nullptr || head->next == nullptr) {
-		return head;
-	}
-
-	Node* rest = reverseList(head->next);
-
-	head->next->next = head;
-	head->next = nullptr;
-
-	return rest;
 }
 
-void revprint(Node* head) {
-	if (head == nullptr) {
-		return;
-	}
-	revprint(head->next);
-	std::cout << head->data;
+void deleteId(Node*& head , int& id) {
+
 }
 
-void print(Node*& head) {
-	while (head != nullptr) {
-		std::cout << head->data << " ";
-		head = head->next;
-	}
-	std::cout << std::endl;
+void searchId(Node*& head, int& id) {
+
 }
+
+void updateGrade(Node*& head, int& id, int& grade) {
+
+}
+
+void display(Node*& head) {
+	Node* temp = head;
+	while (temp != nullptr) {
+		std::cout << temp->id << "\n" << temp->name << "\n" << temp->grade << "\n";
+		std::cout << "-------" << "\n";
+		temp = temp->next;
+	}
+}
+
 
 int main() {
-	Node* head = new Node{ 1, nullptr };
-	head->next = new Node{ 2, nullptr };
-	head->next->next = new Node{ 3, nullptr };
 
-	/*int pos, num;
-	std::cout << "Enter the nth position you want the int to be at" << std::endl;
-	std::cin >> pos;
-	std::cout << "Enter the number that you want to add" << std::endl;
-	std::cin >> num;
+	Node* head = new Node{ 1, "piyush", 50, nullptr };
+	head->next = new Node{ 2, "oana", 80, nullptr };
+	head->next->next = new Node{ 3, "rachel", 70, nullptr };
+	bool running = true;
+	int options;
+	int id, grade, pos;
+	std::string name;
+	while (running) {
+		std::cout << "What do you want to do?" << std::endl;
+		std::cout << "1. Add a student. \n2. Remove the student \n3. Look for a student. \n4. Update the Grade of a student? \n5. Display all the records \n6.Exit" << std::endl;
+		std::cin >> options;
 
-	nth(pos, head, num);
+		switch(options) {
+		case 1:
+			std::cout << "Enter the Id for the student" << std::endl;;
+			std::cin >> id;
+			std::cout << "Enter the name of the student" << std::endl;;
+			std::cin >> name;
+			std::cout << "Enter the Grade the student got" << std::endl;;
+			std::cin >> grade;
+			std::cout << "Enter the position that you want the student to be at in the list" << std::endl;
+			std::cin >> pos;
+			system("cls");
+			add(head, id, name, grade, pos);
+			break;
 
-	std::cout << "updated list...";
-	print(head);*/
+		case 2:
+			std::cout << "Enter the Id of the student you want to remove from the list" << std::endl;
+			std::cin >> id;
+			system("cls");
+			deleteId(head, id);
+			break;
 
-	revprint(head);
-	return 0;
+		case 3:
+			std::cout << "Enter the Id of the student you want to look for. " << std::endl;
+			std::cin >> id;
+			system("cls");
+			searchId(head, id);
+			break;
 
-}
+		case 4:
+			std::cout << "Enter the id of the student you want to update the grade" << std::endl;
+			std::cout << id;
+			std::cout << "Enter the grade you want to give." << std::endl;
+			std::cout << grade;
+			system("cls");
+			updateGrade(head, id, grade);
+			break;
+
+		case 5:
+			system("cls");
+			display(head);
+			break;
+
+		case 6:
+			std::cout << "Thank for using single linked list" << std::endl;
+			system("cls");
+			running = false;
+			break;
+		}
+	}
+};
+
