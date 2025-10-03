@@ -382,7 +382,22 @@ void deleteId(Node*& head , int& id) {
 }                                  
 
 void searchId(Node*& head, int& id) {
+	Node* temp = head;
 
+	if (head == nullptr) return;
+
+	if (temp->id == id) {
+		std::cout << temp->id << "\n" << temp->name << "\n" << temp->grade << "\n";
+		std::cout << "--------" << std::endl;
+	}
+	temp = head->next;
+	while (temp != nullptr && temp->id != id) {
+		temp = temp->next;
+	}
+
+	if (temp != nullptr) {
+		std::cout << temp->id << "\n" << temp->name << "\n" << temp->grade << "\n";
+	}
 }
 
 void updateGrade(Node*& head, int& id, int& grade) {
