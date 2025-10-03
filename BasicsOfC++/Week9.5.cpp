@@ -389,6 +389,7 @@ void searchId(Node*& head, int& id) {
 	if (temp->id == id) {
 		std::cout << temp->id << "\n" << temp->name << "\n" << temp->grade << "\n";
 		std::cout << "--------" << std::endl;
+		return;
 	}
 	temp = head->next;
 	while (temp != nullptr && temp->id != id) {
@@ -401,7 +402,22 @@ void searchId(Node*& head, int& id) {
 }
 
 void updateGrade(Node*& head, int& id, int& grade) {
+	Node* temp = head;
+	
+	if (head == nullptr) return;
 
+	if (temp->id == id) {
+		temp->grade = grade;
+		return;
+	}
+	temp = head->next;
+	while (temp != nullptr && temp->id != id) {
+		temp = temp->next;
+	}
+
+	if (temp != nullptr) {
+		temp->grade = grade;
+	}
 }
 
 void display(Node*& head) {
@@ -458,9 +474,9 @@ int main() {
 
 		case 4:
 			std::cout << "Enter the id of the student you want to update the grade" << std::endl;
-			std::cout << id;
+			std::cin >> id;
 			std::cout << "Enter the grade you want to give." << std::endl;
-			std::cout << grade;
+			std::cin >> grade;
 			system("cls");
 			updateGrade(head, id, grade);
 			break;
