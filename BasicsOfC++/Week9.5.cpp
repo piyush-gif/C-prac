@@ -327,12 +327,32 @@
 struct Node {
 	int id;
 	std::string name;
-	float grade;
+	int grade;
 	Node* next;
 };
 
 void add(Node*& head, int& id, std::string& name, int& grade, int& pos) {
+	Node* temp;
+	Node* newNode = new Node{ id, name, grade, nullptr };
+	if (pos == 1) {
+		temp = newNode;
+		temp->next = head;
+		head = temp;
+		return;
+	}
 
+	Node* prev = nullptr;
+	Node* curr = head;
+
+	for (int i = 1; i < pos && curr != nullptr; i++) { 
+		prev = curr;
+		curr = curr->next;
+	}	                                                                                                                                                                                                                                                                                                                                     
+
+	if (prev != nullptr) {
+		prev->next = newNode;
+		newNode->next = curr;
+	}
 }
 
 void deleteId(Node*& head , int& id) {
@@ -373,11 +393,11 @@ int main() {
 
 		switch(options) {
 		case 1:
-			std::cout << "Enter the Id for the student" << std::endl;;
+			std::cout << "Enter the Id for the student" << std::endl;
 			std::cin >> id;
-			std::cout << "Enter the name of the student" << std::endl;;
+			std::cout << "Enter the name of the student" << std::endl;
 			std::cin >> name;
-			std::cout << "Enter the Grade the student got" << std::endl;;
+			std::cout << "Enter the Grade the student got" << std::endl;
 			std::cin >> grade;
 			std::cout << "Enter the position that you want the student to be at in the list" << std::endl;
 			std::cin >> pos;
@@ -422,3 +442,4 @@ int main() {
 	}
 };
 
+                                                                                                  
