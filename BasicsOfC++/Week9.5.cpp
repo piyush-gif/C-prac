@@ -332,12 +332,10 @@ struct Node {
 };
 
 void add(Node*& head, int& id, std::string& name, int& grade, int& pos) {
-	Node* temp;
 	Node* newNode = new Node{ id, name, grade, nullptr };
 	if (pos == 1) {
-		temp = newNode;
-		temp->next = head;
-		head = temp;
+		newNode->next = head;
+		head = newNode;
 		return;
 	}
 
@@ -356,8 +354,32 @@ void add(Node*& head, int& id, std::string& name, int& grade, int& pos) {
 }
 
 void deleteId(Node*& head , int& id) {
+	Node* temp = head;
 
-}
+	if (head == nullptr) {
+		return;
+	}
+
+	if (temp->id == id) {
+		head = head->next;
+		delete temp;
+		return;
+	}
+
+	Node* curr = head;
+	Node* prev = nullptr;
+
+	while (curr->id != id) {
+		prev = curr;
+		curr = curr->next;
+	}
+
+	if (curr != nullptr) {
+		prev->next = curr->next;
+		delete curr;
+	}
+
+}                                  
 
 void searchId(Node*& head, int& id) {
 
