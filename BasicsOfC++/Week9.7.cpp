@@ -35,7 +35,33 @@ void add() {
 }
 
 void deleted(Node*& head, int id) {
-;
+	if (head == nullptr) return;
+
+	Node* temp = head;
+	if (temp->songId == id) {
+		head = head->next;
+		if (head != nullptr) {
+			head->prev = nullptr;
+			
+		}
+		delete temp;
+		return;
+	}
+
+	while (temp != nullptr && temp->songId != id) {
+		temp = temp->next;
+	}
+
+	if (temp == nullptr) return;
+
+	if (temp->next != nullptr) {
+		temp->next->prev = temp->prev;
+	}
+	
+	if (temp->prev != nullptr) {
+		temp->prev->next = temp->next;
+	}
+	delete temp;
 }
 
 void search(Node*& head, int id) {
