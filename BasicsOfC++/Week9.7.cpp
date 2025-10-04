@@ -29,9 +29,34 @@ struct Node {
 	Node* next;
 	Node* prev;
 };
-void add() {
+void add(Node*& head, int id, std::string artist, std::string title, int pos) {
+	
+	Node* temp = head;
+	Node* newNode = new Node{ id, title, artist, nullptr, nullptr };
 
+	if (head == nullptr) {
+		head = newNode;
+		return;
+	}
 
+	if (pos == 1) {
+		newNode->next = temp;
+		temp->prev = newNode;
+		head = newNode;
+		return;
+	}
+
+	for (int i = 1; i < pos - 1 && temp != nullptr; i++) {
+		temp = temp->next;
+	}
+	newNode->next = temp->next;
+	newNode->prev = temp;
+
+	if (temp->next != nullptr) {
+		temp->next->prev = newNode;
+	}
+
+	temp->next = newNode;
 }
 
 void deleted(Node*& head, int id) {
@@ -66,7 +91,7 @@ void deleted(Node*& head, int id) {
 
 void search(Node*& head, int id) {
 	if (head == nullptr) return;
-	Node* temp;
+	Node* temp = head;
 
 	while (temp != nullptr && temp->songId != id) {
 		temp = temp->next;
@@ -87,7 +112,7 @@ void print(Node*& head) {
 
 	while (temp != nullptr) {
 		std::cout << temp->songId << std::endl << temp->artist << std::endl << temp->title << std::endl;
-		std::cout << "-------";
+		std::cout << "-------" << std::endl;
 		temp = temp->next;
 	}
 }
@@ -118,7 +143,7 @@ int main() {
 			std::cout << "Enter the position that you want the song to be at in the list" << std::endl;
 			std::cin >> pos;
 			system("cls");
-			add();
+			add(head, id, artist , title, pos);
 			break;
 
 		case 2:
