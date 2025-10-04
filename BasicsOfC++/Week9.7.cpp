@@ -17,8 +17,7 @@
 //Play songs forward(next) and backward(previous).
 //
 //Search for a song by title or artist.
-//
-//Shuffle option(pick random node and traverse forward).
+
 
 #include<iostream>
 
@@ -89,21 +88,32 @@ void deleted(Node*& head, int id) {
 	delete temp;
 }
 
-void search(Node*& head, int id) {
-	if (head == nullptr) return;
+Node* search(Node*& head, int id) {
+	if (head == nullptr) return nullptr;
 	Node* temp = head;
 
+	if (temp == nullptr) {
+		std::cout << "nope!" << std::endl;
+	}
 	while (temp != nullptr && temp->songId != id) {
 		temp = temp->next;
 	}
-	if (temp != nullptr) {
-		std::cout << head->songId << std::endl << head->artist << std::endl << head->title << std::endl;
-	}
+	return temp;
 }
 
-void play() {
+Node* play(Node*& head, std::string go, int id) {
+	Node* temp = search(head, id);
 
+	if (temp != nullptr && go == "n"){
+		temp = temp->next;
+		return temp;
+	}
+	else if (temp != nullptr && go == "p") {
+		temp = temp->prev;
+		return temp;
+	}
 	
+
 }
 void print(Node*& head) {
 
@@ -123,13 +133,15 @@ int main() {
 	head->next = second;
 	Node* third = new Node{ 3, "glimse of us", "joji", nullptr, second };
 	second->next = third;
+	Node* result;
 	bool running = true;
+	bool playing;
 	int options;
 	int id, pos;
-	std::string title, artist;
+	std::string title, artist, go;
 	while (running) {
 		std::cout << "What do you want to do?" << std::endl;
-		std::cout << "1. Add a song \n2. Remove the song from the playlist \n3. Look for a song  \n5. Display all the songs \n6.Exit" << std::endl;
+		std::cout << "1. Add a song \n2. Remove the song from the playlist \n3. Look for a song \n4.Play the playlist? \n5. Display all the songs \n6.Exit" << std::endl;
 		std::cin >> options;
 
 		switch (options) {
@@ -157,10 +169,35 @@ int main() {
 			std::cout << "Enter the Id of the song you want to look for. " << std::endl;
 			std::cin >> id;
 			system("cls");
-			search(head, id);
+			result = search(head, id);
+			std::cout << result->songId <<std::endl;
+			std::cout << result->artist << std::endl;
+			std::cout << result->title << std::endl;
 			break;
 
 		case 4:
+			std::cout << "Enter the song's id you want to play!" << std::endl;
+			std::cin >> id;
+			result = search(head, id);
+			std::cout << "Now playing " << result->title << " by " << result->artist << std::endl;
+			playing = true;
+			while (playing) {
+				std::cout << "Type n for the next song or p for previous song. And type stop to exit." << std::endl;
+				std::cin >> go;
+				if (go == "n") {
+					result = play(head, go, id);
+					std::cout << "Now playing " << result->title << " by " << result->artist << std::endl;
+				}
+				else if (go == "p") {
+					result = play(head , go, id);
+					std::cout << "Now playing " << result->title << " by " << result->artist << std::endl;
+				}
+				else if (go == "stop") {
+					std::cout << "bye bye!" << std::endl;
+					playing = false;
+				}
+
+			}
 			break;
 
 		case 5:
