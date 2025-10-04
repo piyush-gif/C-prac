@@ -33,12 +33,21 @@ void add() {
 
 
 }
-void deleted() {
 
+void deleted(Node*& head, int id) {
+;
 }
 
-void search() {
+void search(Node*& head, int id) {
+	if (head == nullptr) return;
+	Node* temp;
 
+	while (temp != nullptr && temp->songId != id) {
+		temp = temp->next;
+	}
+	if (temp != nullptr) {
+		std::cout << head->songId << std::endl << head->artist << std::endl << head->title << std::endl;
+	}
 }
 
 void play() {
@@ -46,10 +55,13 @@ void play() {
 	
 }
 void print(Node*& head) {
+
+	if (head == nullptr) return;
 	Node* temp = head;
 
 	while (temp != nullptr) {
-		std::cout << temp->artist << std::endl;
+		std::cout << temp->songId << std::endl << temp->artist << std::endl << temp->title << std::endl;
+		std::cout << "-------";
 		temp = temp->next;
 	}
 }
@@ -87,14 +99,14 @@ int main() {
 			std::cout << "Enter the Id of the song you want to remove from the list" << std::endl;
 			std::cin >> id;
 			system("cls");
-			deleted();
+			deleted(head, id);
 			break;
 
 		case 3:
 			std::cout << "Enter the Id of the song you want to look for. " << std::endl;
 			std::cin >> id;
 			system("cls");
-			search();
+			search(head, id);
 			break;
 
 		case 4:
