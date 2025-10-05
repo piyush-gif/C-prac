@@ -88,7 +88,7 @@ void deleted(Node*& head, int id) {
 	delete temp;
 }
 
-Node* search(Node*& head, int id) {
+Node* search(Node*& head, int& id) {
 	if (head == nullptr) return nullptr;
 	Node* temp = head;
 
@@ -101,20 +101,21 @@ Node* search(Node*& head, int id) {
 	return temp;
 }
 
-Node* play(Node*& head, std::string go, int id) {
-	Node* temp = search(head, id);
+Node* play(Node* current, const std::string& go) {
+	if (current == nullptr) return nullptr;
 
-	if (temp != nullptr && go == "n"){
-		temp = temp->next;
-		return temp;
+	if (go == "n" && current->next != nullptr) {
+		return current->next;
 	}
-	else if (temp != nullptr && go == "p") {
-		temp = temp->prev;
-		return temp;
+	else if (go == "p" && current->prev != nullptr) {
+		return current->prev;
 	}
-	
-
+	else {
+		std::cout << "No more songs in that direction!\n";
+		return current;
+	}
 }
+
 void print(Node*& head) {
 
 	if (head == nullptr) return;
@@ -134,6 +135,7 @@ int main() {
 	Node* third = new Node{ 3, "glimse of us", "joji", nullptr, second };
 	second->next = third;
 	Node* result;
+	Node* trys;
 	bool running = true;
 	bool playing;
 	int options;
@@ -185,18 +187,19 @@ int main() {
 				std::cout << "Type n for the next song or p for previous song. And type stop to exit." << std::endl;
 				std::cin >> go;
 				if (go == "n") {
-					result = play(head, go, id);
-					std::cout << "Now playing " << result->title << " by " << result->artist << std::endl;
+					trys = play(result, go);
+					std::cout << "Now playing " << trys->title << " by " << trys->artist << std::endl;
+					result = trys;
 				}
 				else if (go == "p") {
-					result = play(head , go, id);
-					std::cout << "Now playing " << result->title << " by " << result->artist << std::endl;
+					trys = play(result , go);
+					std::cout << "Now playing " << trys->title << " by " << trys->artist << std::endl;
+					result = trys;
 				}
 				else if (go == "stop") {
 					std::cout << "bye bye!" << std::endl;
 					playing = false;
 				}
-
 			}
 			break;
 
