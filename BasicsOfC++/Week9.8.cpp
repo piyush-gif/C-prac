@@ -64,6 +64,23 @@ void pop(Stack& s) {
 	delete temp;
 }
 
+std::string reverseString(const std::string& str) {
+	Stack s;
+	s.top = nullptr;
+
+	// Push all characters
+	for (char c : str)
+		push(s, c);
+
+	// Pop all characters to build reversed string
+	string reversed = "";
+	while (!isEmpty(s))
+		reversed += pop(s);
+
+	clear(s);
+	return reversed;
+}
+
 void peek(Stack& s) {
 	if (s.top == nullptr) {
 		return;
