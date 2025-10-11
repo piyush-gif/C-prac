@@ -39,10 +39,77 @@
 //    return 0;
 //}
 
+//#include<iostream>
+//
+//struct Node {
+//	int data;
+//	Node* next;
+//};
+//
+//struct Stack {
+//	Node* top;
+//};
+//
+//void push(Stack& s, int value) {
+//	Node* newNode = new Node{ value, s.top };
+//	s.top = newNode;
+//}
+//
+//void pop(Stack& s) {
+//	if (s.top == nullptr) {
+//		return;
+//	}
+//	Node* temp = s.top;
+//	s.top = s.top->next;
+//	delete temp;
+//}
+//
+//void rev(Stack& s) {
+//	while (s.top != nullptr) {
+//		std::cout << s.top->data;
+//		s.top = s.top->next;
+//	}
+//}
+//
+//void peek(Stack& s) {
+//	if (s.top == nullptr) {
+//		return;
+//	}
+//	std::cout << s.top->data << std::endl;
+//}
+//
+//void display(Stack& s) {
+//	Node* temp = s.top;
+//	while (temp != nullptr) {
+//		std::cout << temp->data << std::endl;
+//		temp = temp->next;
+//	}
+//}
+//
+//int main() {
+//	Stack s;
+//	s.top = nullptr;
+//
+//	push(s, 1);
+//	push(s, 2);
+//	push(s, 3);
+//	display(s); 
+//
+//	//peek(s);
+//
+//	//pop(s);
+//	//display(s); 
+//
+//	/*rev(s);*/
+//	return 0;
+//}
+
+//If the expression is not balanced, print the index(or position) of the first mismatch.
+
 #include<iostream>
 
 struct Node {
-	int data;
+	std::string data;
 	Node* next;
 };
 
@@ -50,64 +117,51 @@ struct Stack {
 	Node* top;
 };
 
-void push(Stack& s, int value) {
-	Node* newNode = new Node{ value, s.top };
-	s.top = newNode;
-}
+void check(Stack& s, std::string& str) {
+	for (char ch : str) {
+		if (ch == '(' || ch == '{' || ch == '[') {
+			Node* newNode = new Node{ std::string(1, ch), s.top };
+			s.top = newNode;
+		}
+		else if (ch == ')' || ch == '}' || ch == ']') {
+			if (s.top == nullptr) {
+				std::cout << "Unbalanced" << std::endl;
+				return;
+			}
 
-void pop(Stack& s) {
+			if ((ch == ')' && s.top->data == "(") ||
+				(ch == '}' && s.top->data == "{") ||
+				(ch == ']' && s.top->data == "[")) {
+				Node* temp = s.top;
+				s.top = s.top->next;
+				delete temp;
+			}
+			else {
+				std::cout << "Unbalanced" << std::endl;
+				return;
+			}
+		}
+	}
+
 	if (s.top == nullptr) {
-		return;
+		std::cout << "Balanced" << std::endl;
 	}
-	Node* temp = s.top;
-	s.top = s.top->next;
-	delete temp;
-}
-
-std::string reverseString(const std::string& str) {
-	Stack s;
-	s.top = nullptr;
-
-	// Push all characters
-	for (char c : str)
-		push(s, c);
-
-	// Pop all characters to build reversed string
-	string reversed = "";
-	while (!isEmpty(s))
-		reversed += pop(s);
-
-	clear(s);
-	return reversed;
-}
-
-void peek(Stack& s) {
-	if (s.top == nullptr) {
-		return;
-	}
-	std::cout << s.top->data << std::endl;
-}
-
-void display(Stack& s) {
-	Node* temp = s.top;
-	while (temp != nullptr) {
-		std::cout << temp->data << std::endl;
-		temp = temp->next;
+	else {
+		std::cout << "Unbalanced" << std::endl;
 	}
 }
+
 
 int main() {
 	Stack s;
 	s.top = nullptr;
 
-	push(s, 1);
-	push(s, 2);
-	push(s, 3);
-	display(s); 
+	std::string string;
 
-	peek(s);
+	std::cout << "Enter the math problem" << std::endl;
+	std::cin >> string;
 
-	pop(s);
-	display(s); 
+	check(s, string);
+	
 	return 0;
 }
