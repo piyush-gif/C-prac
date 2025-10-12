@@ -106,62 +106,149 @@
 
 //If the expression is not balanced, print the index(or position) of the first mismatch.
 
-#include<iostream>
+//#include<iostream>
+//
+//struct Node {
+//	std::string data;
+//	Node* next;
+//};
+//
+//struct Stack {
+//	Node* top;
+//};
+//
+//void check(Stack& s, std::string& str) {
+//	for (char ch : str) {
+//		if (ch == '(' || ch == '{' || ch == '[') {
+//			Node* newNode = new Node{ std::string(1, ch), s.top };
+//			s.top = newNode;
+//		}
+//		else if (ch == ')' || ch == '}' || ch == ']') {
+//			if (s.top == nullptr) {
+//				std::cout << "Unbalanced" << std::endl;
+//				return;
+//			}
+//
+//			if ((ch == ')' && s.top->data == "(") ||
+//				(ch == '}' && s.top->data == "{") ||
+//				(ch == ']' && s.top->data == "[")) {
+//				Node* temp = s.top;
+//				s.top = s.top->next;
+//				delete temp;
+//			}
+//			else {
+//				std::cout << "Unbalanced" << std::endl;
+//				return;
+//			}
+//		}
+//	}
+//
+//	if (s.top == nullptr) {
+//		std::cout << "Balanced" << std::endl;
+//	}
+//	else {
+//		std::cout << "Unbalanced" << std::endl;
+//	}
+//}
+//
+//
+//int main() {
+//	Stack s;
+//	s.top = nullptr;
+//
+//	std::string string;
+//
+//	std::cout << "Enter the math problem" << std::endl;
+//	std::cin >> string;
+//
+//	check(s, string);
+//	
+//	return 0;
+//}
+
+
+// infix , prefix and postfix
+
+// A + B =  infix
+// + AB = prefix
+// AB + = postfix
+
+
+//5 6 2 + * 12 4 / -
+
+#include <iostream>
+#include <sstream>  
+#include <string>
+#include <cctype>   
+using namespace std;
 
 struct Node {
-	std::string data;
-	Node* next;
+    int data;
+    Node* next;
 };
 
 struct Stack {
-	Node* top;
+    Node* top;
+    Stack() : top(nullptr) {}
+
+    void push(int value) {
+        Node* newNode = new Node{ value, top };
+        top = newNode;
+    }
+
+    int pop() {
+        if (top == nullptr) {
+            cout << "Stack underflow\n";
+            exit(1);
+        }
+        int val = top->data;
+        Node* temp = top;
+        top = top->next;
+        delete temp;
+        return val;
+    }
+
+    bool isEmpty() {
+        return top == nullptr;
+    }
+
+    int peek() {
+        return top ? top->data : -1;
+    }
 };
 
-void check(Stack& s, std::string& str) {
-	for (char ch : str) {
-		if (ch == '(' || ch == '{' || ch == '[') {
-			Node* newNode = new Node{ std::string(1, ch), s.top };
-			s.top = newNode;
-		}
-		else if (ch == ')' || ch == '}' || ch == ']') {
-			if (s.top == nullptr) {
-				std::cout << "Unbalanced" << std::endl;
-				return;
-			}
+void calcu(string expr, Stack& s) {
+    stringstream ss(expr);
+    string token;
 
-			if ((ch == ')' && s.top->data == "(") ||
-				(ch == '}' && s.top->data == "{") ||
-				(ch == ']' && s.top->data == "[")) {
-				Node* temp = s.top;
-				s.top = s.top->next;
-				delete temp;
-			}
-			else {
-				std::cout << "Unbalanced" << std::endl;
-				return;
-			}
-		}
-	}
+    while (ss >> token) {
+        if (isdigit(token[0])) {
+            s.push(stoi(token));
+        }
+        else {
+            int b = s.pop();
+            int a = s.pop();
+            int result = 0;
 
-	if (s.top == nullptr) {
-		std::cout << "Balanced" << std::endl;
-	}
-	else {
-		std::cout << "Unbalanced" << std::endl;
-	}
+            switch (token[0]) {
+            case '+': result = a + b; break;
+            case '-': result = a - b; break;
+            case '*': result = a * b; break;
+            case '/': result = a / b; break;
+            default: cout << "Unknown operator: " << token << endl; return;
+            }
+            s.push(result);
+        }
+    }
+
+    cout << "Result: " << s.pop() << endl;
 }
-
 
 int main() {
-	Stack s;
-	s.top = nullptr;
-
-	std::string string;
-
-	std::cout << "Enter the math problem" << std::endl;
-	std::cin >> string;
-
-	check(s, string);
-	
-	return 0;
+    Stack s;
+    string calc = "5 6 2 + * 12 4 / -";
+    calcu(calc, s);
+    return 0;
 }
+
+
