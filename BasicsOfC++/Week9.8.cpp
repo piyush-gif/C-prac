@@ -176,79 +176,133 @@
 
 //5 6 2 + * 12 4 / -
 
-#include <iostream>
-#include <sstream>  
-#include <string>
-#include <cctype>   
-using namespace std;
+//#include <iostream>
+//#include <sstream>  
+//#include <string>
+//#include <cctype>   
+//using namespace std;
+//
+//struct Node {
+//    int data;
+//    Node* next;
+//};
+//
+//struct Stack {
+//    Node* top;
+//    Stack() : top(nullptr) {}
+//
+//    void push(int value) {
+//        Node* newNode = new Node{ value, top };
+//        top = newNode;
+//    }
+//
+//    int pop() {
+//        if (top == nullptr) {
+//            cout << "Stack underflow\n";
+//            exit(1);
+//        }
+//        int val = top->data;
+//        Node* temp = top;
+//        top = top->next;
+//        delete temp;
+//        return val;
+//    }
+//
+//    bool isEmpty() {
+//        return top == nullptr;
+//    }
+//
+//    int peek() {
+//        return top ? top->data : -1;
+//    }
+//};
+//
+//void calcu(string expr, Stack& s) {
+//    stringstream ss(expr);
+//    string token;
+//
+//    while (ss >> token) {
+//        if (isdigit(token[0])) {
+//            s.push(stoi(token));
+//        }
+//        else {
+//            int b = s.pop();
+//            int a = s.pop();
+//            int result = 0;
+//
+//            switch (token[0]) {
+//            case '+': result = a + b; break;
+//            case '-': result = a - b; break;
+//            case '*': result = a * b; break;
+//            case '/': result = a / b; break;
+//            default: cout << "Unknown operator: " << token << endl; return;
+//            }
+//            s.push(result);
+//        }
+//    }
+//
+//    cout << "Result: " << s.pop() << endl;
+//}
+//
+//int main() {
+//    Stack s;
+//    string calc = "5 6 2 + * 12 4 / -";
+//    calcu(calc, s);
+//    return 0;
+//}
+
+
+#include<iostream>
+
 
 struct Node {
-    int data;
-    Node* next;
+	int data;
+	Node* next;
 };
 
-struct Stack {
-    Node* top;
-    Stack() : top(nullptr) {}
+void add(Node*& head, int num) {
+	Node* newNode = new Node{ num , nullptr };
+	
+	if (head == nullptr) {
+		head = newNode;
+		return;
+	}
+	Node* temp = head;
 
-    void push(int value) {
-        Node* newNode = new Node{ value, top };
-        top = newNode;
-    }
+	while (temp->next != nullptr) {
+		temp = temp->next;
+	}
 
-    int pop() {
-        if (top == nullptr) {
-            cout << "Stack underflow\n";
-            exit(1);
-        }
-        int val = top->data;
-        Node* temp = top;
-        top = top->next;
-        delete temp;
-        return val;
-    }
+	temp->next = newNode;
+}
 
-    bool isEmpty() {
-        return top == nullptr;
-    }
+void pop(Node*& head) {
+	
+	if (head == nullptr) return;
+	Node* temp = head;
 
-    int peek() {
-        return top ? top->data : -1;
-    }
-};
-
-void calcu(string expr, Stack& s) {
-    stringstream ss(expr);
-    string token;
-
-    while (ss >> token) {
-        if (isdigit(token[0])) {
-            s.push(stoi(token));
-        }
-        else {
-            int b = s.pop();
-            int a = s.pop();
-            int result = 0;
-
-            switch (token[0]) {
-            case '+': result = a + b; break;
-            case '-': result = a - b; break;
-            case '*': result = a * b; break;
-            case '/': result = a / b; break;
-            default: cout << "Unknown operator: " << token << endl; return;
-            }
-            s.push(result);
-        }
-    }
-
-    cout << "Result: " << s.pop() << endl;
+	head = head->next;
+	std::cout << "deleted " << temp->data << std::endl;
+	delete temp;
+	
 }
 
 int main() {
-    Stack s;
-    string calc = "5 6 2 + * 12 4 / -";
-    calcu(calc, s);
-    return 0;
+	Node* head = new Node{ 1, nullptr };
+	head->next = new Node{ 2, nullptr };
+	head->next->next = new Node{ 3, nullptr };
+	
+	add(head, 5);
+	Node* temp = head;
+	while (temp != nullptr) {
+		std::cout << temp->data << std::endl;
+		temp = temp->next;
+	}
+	std::cout << "------------";
+	pop(head);
+	temp = head;
+
+	
+	
+	return 0;
 }
-
-
