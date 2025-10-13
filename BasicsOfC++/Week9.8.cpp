@@ -252,57 +252,57 @@
 //}
 
 
-#include<iostream>
-
-
-struct Node {
-	int data;
-	Node* next;
-};
-
-void add(Node*& head, int num) {
-	Node* newNode = new Node{ num , nullptr };
-	
-	if (head == nullptr) {
-		head = newNode;
-		return;
-	}
-	Node* temp = head;
-
-	while (temp->next != nullptr) {
-		temp = temp->next;
-	}
-
-	temp->next = newNode;
-}
-
-void pop(Node*& head) {
-	
-	if (head == nullptr) return;
-	Node* temp = head;
-
-	head = head->next;
-	std::cout << "deleted " << temp->data << std::endl;
-	delete temp;
-	
-}
-
-int main() {
-	Node* head = new Node{ 1, nullptr };
-	head->next = new Node{ 2, nullptr };
-	head->next->next = new Node{ 3, nullptr };
-	
-	add(head, 5);
-	Node* temp = head;
-	while (temp != nullptr) {
-		std::cout << temp->data << std::endl;
-		temp = temp->next;
-	}
-	std::cout << "------------";
-	pop(head);
-	temp = head;
-
-	
-	
-	return 0;
-}
+//#include<iostream>
+//
+//
+//struct Node {
+//	int data;
+//	Node* next;
+//};
+//
+//void add(Node*& head, int num) {
+//	Node* newNode = new Node{ num , nullptr };
+//	
+//	if (head == nullptr) {
+//		head = newNode;
+//		return;
+//	}
+//	Node* temp = head;
+//
+//	while (temp->next != nullptr) {
+//		temp = temp->next;
+//	}
+//
+//	temp->next = newNode;
+//}
+//
+//void pop(Node*& head) {
+//	
+//	if (head == nullptr) return;
+//	Node* temp = head;
+//
+//	head = head->next;
+//	std::cout << "deleted " << temp->data << std::endl;
+//	delete temp;
+//	
+//}
+//
+//int main() {
+//	Node* head = new Node{ 1, nullptr };
+//	head->next = new Node{ 2, nullptr };
+//	head->next->next = new Node{ 3, nullptr };
+//	
+//	add(head, 5);
+//	Node* temp = head;    
+//	while (temp != nullptr) {
+//		std::cout << temp->data << std::endl;
+//		temp = temp->next;
+//	}
+//	std::cout << "------------";
+//	pop(head);
+//	temp = head;
+//
+//	
+//	
+//	return 0;
+//}
