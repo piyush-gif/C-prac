@@ -1,5 +1,13 @@
-// infix , prefix and postfix
+// Binary Search Tree
 
-// A + B =  infix
-// + AB = prefix
-// AB + = postfix
+#include<iostream>
+
+
+struct Node {
+	int data;
+	Node* left;
+	Node* right;
+};
+int main() {
+	return 0;
+}
