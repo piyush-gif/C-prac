@@ -11,7 +11,14 @@ struct Node {
 };
 
 
+void add(Node*& root) {
+
+}
+
 
 int main() {
+	Node* root = new Node{ 10, nullptr };
+
+	add(root);
 	return 0;
 }
