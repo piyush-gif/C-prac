@@ -2,7 +2,7 @@
 
 // left nodes for the lesser and right nodes for the greater than
 #include<iostream>
-
+// next day
 
 struct Node {
 	int data;
