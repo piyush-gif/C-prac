@@ -32,7 +32,7 @@ bool search(Node*& root, int data) {
 	else if (data < root->data) return search(root->left, data);
 	else if (data > root->data) return search(root->right, data);
 }
-
+//memory allocation
 
 int main() {
 	Node* root = nullptr;
