@@ -33,6 +33,7 @@ bool search(Node*& root, int data) {
 	else if (data > root->data) return search(root->right, data);
 }
 //memory allocation
+// deleteing a node, just replace the smaller so go to the left of the sub node to replace and and thne delete
 
 int main() {
 	Node* root = nullptr;
