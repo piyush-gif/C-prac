@@ -88,10 +88,6 @@
 //    root = Delete(root, num);
 //    return 0;
 //}
-
-
-
-
 /*
 mini project
 Core Features to Implement
@@ -113,14 +109,15 @@ struct Node {
 	Node* right;
 };
 
-void add(Node* root,int& id,std::string& name,int& score) {
+void add(Node*& root,int id,std::string name,int score) {
 	if (root == nullptr) {
-		root == new Node{ id , name, score, nullptr , nullptr };
-
-
+		root = new Node{ id , name, score, nullptr , nullptr };
+		return;
 	}
 
-	
+	if (id < root->id) add(root->left, id, name, score);
+	else if (id > root->id) add(root->right, id, name, score);
+	else std::cout << "ID already exists!\n";
 }
 
 void search() {
@@ -145,6 +142,11 @@ int main() {
 	bool running = true;
 	int score, id, choose;
 	std::string name;
+
+	add(root, 5, "piyush", 50);
+	add(root, 6, "divya", 60);
+	add(root, 2, "prachi", 80);
+	add(root, 1, "luna", 100);
 	while (running) {
 		while (running) {
 			std::cout << "1. Add \n2. Display all \n3. Delete.\n4. Search a Student. \n5. Find the topper \n6. Exit! \n";
@@ -169,24 +171,27 @@ int main() {
 				system("cls");
 				std::cout << "Enter the id of the one to be kicked!" << std::endl;
 				std::cin >> id;
-				//deleted(root, id);
 				break;
 			
 			case 4:
 				system("cls");
 				std::cout << "Enter the id of student to search for" << std::endl;
 				std::cin >> id;
-			
+				break;
+
 			case 5:
 				system("cls");
 				std::cout << "finding the topper..." << std::endl;
+				break;
 
 			case 6:
 				running = false;
 				break;
 
 			default:
-				std::cout << "Invalid Choices!";
+				std::cout << "Invalid Choices!" << std::endl;
+				break;
+				
 			}
 		}
 	}
