@@ -120,8 +120,15 @@ void add(Node*& root,int id,std::string name,int score) {
 	else std::cout << "ID already exists!\n";
 }
 
-void search() {
+void search(Node*& root, int& id) {
+	if (root == nullptr) return;
 
+	if (id > root->id) search(root->right, id);
+	if (id < root->id) search(root->left, id);
+
+	if (id == root->id) {
+		std::cout << "name of the student of that id is " << root->name << std::endl;
+	}
 }
 
 void displayAll() {
@@ -147,6 +154,7 @@ int main() {
 	add(root, 6, "divya", 60);
 	add(root, 2, "prachi", 80);
 	add(root, 1, "luna", 100);
+
 	while (running) {
 		while (running) {
 			std::cout << "1. Add \n2. Display all \n3. Delete.\n4. Search a Student. \n5. Find the topper \n6. Exit! \n";
@@ -177,6 +185,7 @@ int main() {
 				system("cls");
 				std::cout << "Enter the id of student to search for" << std::endl;
 				std::cin >> id;
+				search(root, id);
 				break;
 
 			case 5:
