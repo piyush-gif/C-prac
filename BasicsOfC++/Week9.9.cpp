@@ -4,48 +4,87 @@
 #include<iostream>
 // next day
 
+
 struct Node {
-	int data;
-	Node* left;
-	Node* right;
+    int data;
+    Node* left;
+    Node* right;
 };
 
-Node* newNode(int data) {
-	Node* newNode = new Node{data, nullptr, nullptr};
-	return newNode;
-}
-
 void add(Node*& root, int data) {
-	if (root == nullptr) {
-		root = new Node{ data, nullptr, nullptr };
-	}
-	if (data < root->data)
-		add(root->left, data);
-	else if (data > root->data)
-		add(root->right, data);
-
+    if (root == nullptr) {
+        root = new Node{ data, nullptr, nullptr };
+        return;
+    }
+    if (data < root->data)
+        add(root->left, data);
+    else if (data > root->data)
+        add(root->right, data);
 }
 
-bool search(Node*& root, int data) {
-	if (root == nullptr) return false;
-	else if (root->data == data) return true;
-	else if (data < root->data) return search(root->left, data);
-	else if (data > root->data) return search(root->right, data);
+// Simple BST search
+bool search(Node* root, int data) {
+    if (root == nullptr) return false;
+    if (root->data == data) return true;
+    if (data < root->data) return search(root->left, data);
+    else return search(root->right, data);
 }
-//memory allocation
-// deleteing a node, just replace the smaller so go to the left of the sub node to replace and and thne delete
+
+// Find minimum node (used in delete)
+Node* findMin(Node* root) {
+    while (root && root->left != nullptr)
+        root = root->left;
+    return root;
+}
+
+// Delete node from BST
+Node* Delete(Node* root, int data) {
+    if (root == nullptr) return root;
+
+    if (data < root->data)
+        root->left = Delete(root->left, data);
+    else if (data > root->data)
+        root->right = Delete(root->right, data);
+    else {
+        // Case 1: No child
+        if (root->left == nullptr && root->right == nullptr) {
+            delete root;
+            return nullptr;
+        }
+        // Case 2: One child
+        else if (root->left == nullptr) {
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        else if (root->right == nullptr) {
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+        // Case 3: Two children
+        Node* temp = findMin(root->right);
+        root->data = temp->data;
+        root->right = Delete(root->right, temp->data);
+    }
+    return root;
+}
 
 int main() {
-	Node* root = nullptr;
-	int num;
-	
-	add(root, 10);
-	add(root, 20);
-	add(root, 15);
-	std::cout << "Enter a number" << std::endl;
-	std::cin >> num;
+    Node* root = nullptr;
+    add(root, 10);
+    add(root, 20);
+    add(root, 15);
 
-	if (search(root, num) == true) std::cout << "found!" << std::endl;
-	else std::cout << "Not found!" << std::endl;
-	return 0;
+    int num;
+    std::cout << "Enter a number: ";
+    std::cin >> num;
+
+    if (search(root, num))
+        std::cout << "Found!\n";
+    else
+        std::cout << "Not found!\n";
+
+    root = Delete(root, num);
+    return 0;
 }
