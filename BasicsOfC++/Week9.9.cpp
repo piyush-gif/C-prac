@@ -131,12 +131,46 @@ void search(Node*& root, int& id) {
 	}
 }
 
-void displayAll() {
-
+void displayAll(Node*& root) {
+	
 }
 
-void Delete() {
+Node* Delete(Node* root, int& id) {
+	if (root == nullptr) return nullptr;
 
+	if (id < root->id) root->left =  Delete(root->left, id);
+	else if (id > root->id) root->right = Delete(root->right, id);
+
+	else { 
+		if (root->left == nullptr  && root->right == nullptr) {
+			delete root;
+			root = nullptr;
+		}
+		else if (root->left == nullptr) {
+			Node* temp = root;
+			root = root->right;
+			delete temp;
+		}
+		else if (root->right == nullptr) {
+			Node* temp = root;
+			root = root->left;
+			delete temp;
+		}
+		else {
+			Node* temp = root->right;
+
+			while (temp->left != nullptr) {
+				temp = temp->left;
+			}
+
+			root->id = temp->id;
+			root->name = temp->name;
+			root->score = temp->score;
+				
+			root->right = Delete(root->right, temp->id);// root->right is the root in delete
+		}
+		return root;
+	}
 }
 
 void topper() {
@@ -173,12 +207,14 @@ int main() {
 			
 			case 2:
 				system("cls");
+				displayAll(root);
 				break;
 			
 			case 3:
 				system("cls");
-				std::cout << "Enter the id of the one to be kicked!" << std::endl;
+				std::cout << "Enter the id of the one to be Deleted!" << std::endl;
 				std::cin >> id;
+				Delete(root, id);
 				break;
 			
 			case 4:
