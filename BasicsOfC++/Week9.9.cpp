@@ -131,9 +131,16 @@ void search(Node*& root, int& id) {
 	}
 }
 
-void displayAll(Node*& root) {
-	
+void displayAll(Node* root) {
+	if (root == nullptr) return;
+
+	displayAll(root->left);  // left subtree
+	std::cout << "ID: " << root->id
+		<< ", Name: " << root->name
+		<< ", Score: " << root->score << std::endl;
+	displayAll(root->right); // right subtree
 }
+
 
 Node* Delete(Node* root, int& id) {
 	if (root == nullptr) return nullptr;
@@ -173,14 +180,29 @@ Node* Delete(Node* root, int& id) {
 	}
 }
 
-void topper() {
+Node* topper(Node* root) {
+	if (root == nullptr) return nullptr;
 
+	Node* lefttopper = topper(root->left);
+	Node* righttopper = topper(root->right);
+
+	Node* maxNode = root;
+
+	if (lefttopper != nullptr && lefttopper->score > maxNode->score)
+		maxNode = lefttopper;
+
+	if (righttopper != nullptr && righttopper->score > maxNode->score)
+		maxNode = righttopper;
+
+	return maxNode;
+	
 }
 
 
 int main() {
 	Node* root = nullptr;
 	bool running = true;
+	Node* final = nullptr;
 	int score, id, choose;
 	std::string name;
 
@@ -227,6 +249,11 @@ int main() {
 			case 5:
 				system("cls");
 				std::cout << "finding the topper..." << std::endl;
+				final = topper(root);
+
+				std::cout << "The student with the highest score is " << final->id << " - " << final->name << " - " << final->score << std::endl;
+				
+
 				break;
 
 			case 6:
