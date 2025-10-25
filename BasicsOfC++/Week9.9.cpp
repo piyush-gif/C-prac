@@ -99,173 +99,196 @@ Delete Student	Remove a record by ID.
 Find Topper	Find the student with the highest marks (custom traversal).
 
 */
-#include<iostream>
+//#include<iostream>
+//
+//struct Node {
+//	int id;
+//	std::string name;
+//	int score;
+//	Node* left;
+//	Node* right;
+//};
+//
+//void add(Node*& root,int id,std::string name,int score) {
+//	if (root == nullptr) {
+//		root = new Node{ id , name, score, nullptr , nullptr };
+//		return;
+//	}
+//
+//	if (id < root->id) add(root->left, id, name, score);
+//	else if (id > root->id) add(root->right, id, name, score);
+//	else std::cout << "ID already exists!\n";
+//}
+//
+//void search(Node*& root, int& id) {
+//	if (root == nullptr) return;
+//
+//	if (id > root->id) search(root->right, id);
+//	if (id < root->id) search(root->left, id);
+//
+//	if (id == root->id) {
+//		std::cout << "name of the student of that id is " << root->name << std::endl;
+//	}
+//}
+//
+//void displayAll(Node* root) {
+//	if (root == nullptr) return;
+//
+//	displayAll(root->left);  // left subtree
+//	std::cout << "ID: " << root->id
+//		<< ", Name: " << root->name
+//		<< ", Score: " << root->score << std::endl;
+//	displayAll(root->right); // right subtree
+//}
+//
+//
+//Node* Delete(Node* root, int& id) {
+//	if (root == nullptr) return nullptr;
+//
+//	if (id < root->id) root->left =  Delete(root->left, id);
+//	else if (id > root->id) root->right = Delete(root->right, id);
+//
+//	else { 
+//		if (root->left == nullptr  && root->right == nullptr) {
+//			delete root;
+//			root = nullptr;
+//		}
+//		else if (root->left == nullptr) {
+//			Node* temp = root;
+//			root = root->right;
+//			delete temp;
+//		}
+//		else if (root->right == nullptr) {
+//			Node* temp = root;
+//			root = root->left;
+//			delete temp;
+//		}
+//		else {
+//			Node* temp = root->right;
+//
+//			while (temp->left != nullptr) {
+//				temp = temp->left;
+//			}
+//
+//			root->id = temp->id;
+//			root->name = temp->name;
+//			root->score = temp->score;
+//				
+//			root->right = Delete(root->right, temp->id);// root->right is the root in delete
+//		}
+//	}
+//	return root;
+//}
+//
+//Node* topper(Node* root) {
+//	if (root == nullptr) return nullptr;
+//
+//	Node* lefttopper = topper(root->left);
+//	Node* righttopper = topper(root->right);
+//
+//	Node* maxNode = root;
+//
+//	if (lefttopper != nullptr && lefttopper->score > maxNode->score)
+//		maxNode = lefttopper;
+//
+//	if (righttopper != nullptr && righttopper->score > maxNode->score)
+//		maxNode = righttopper;
+//
+//	return maxNode;
+//}
+//
+//
+//int main() {
+//	Node* root = nullptr;
+//	bool running = true;
+//	Node* final = nullptr;
+//	int score, id, choose;
+//	std::string name;
+//
+//	add(root, 5, "piyush", 50);
+//	add(root, 2, "prachi", 80);
+//	add(root, 1, "luna", 100);
+//
+//	while (running) {
+//		while (running) {
+//			std::cout << "1. Add \n2. Display all \n3. Delete.\n4. Search a Student. \n5. Find the topper \n6. Exit! \n";
+//			std::cin >> choose;
+//			switch (choose) {
+//			case 1:
+//				system("cls");
+//				std::cout << "Enter the name of the student" << std::endl;
+//				std::cin >> name;
+//				std::cout << "Enter the id" << std::endl;
+//				std::cin >> id;
+//				std::cout << "Enter the score:" << std::endl;
+//				std::cin >> score;
+//				add(root, id, name , score);
+//				break;
+//			
+//			case 2:
+//				system("cls");
+//				displayAll(root);
+//				break;
+//			
+//			case 3:
+//				system("cls");
+//				std::cout << "Enter the id of the one to be Deleted!" << std::endl;
+//				std::cin >> id;
+//				Delete(root, id);
+//				break;
+//			
+//			case 4:
+//				system("cls");
+//				std::cout << "Enter the id of student to search for" << std::endl;
+//				std::cin >> id;
+//				search(root, id);
+//				break;
+//
+//			case 5:
+//				system("cls");
+//				std::cout << "finding the topper..." << std::endl;
+//				final = topper(root);
+//				std::cout << "The student with the highest score is " << final->id << " - " << final->name << " - " << final->score << std::endl;
+//				break;
+//
+//			case 6:
+//				running = false;
+//				break;
+//
+//			default:
+//				std::cout << "Invalid Choices!" << std::endl;
+//				break;
+//				
+//			}
+//		}
+//	}
+//	return 0;
+//}
 
-struct Node {
-	int id;
-	std::string name;
-	int score;
-	Node* left;
-	Node* right;
-};
 
-void add(Node*& root,int id,std::string name,int score) {
-	if (root == nullptr) {
-		root = new Node{ id , name, score, nullptr , nullptr };
-		return;
-	}
-
-	if (id < root->id) add(root->left, id, name, score);
-	else if (id > root->id) add(root->right, id, name, score);
-	else std::cout << "ID already exists!\n";
-}
-
-void search(Node*& root, int& id) {
-	if (root == nullptr) return;
-
-	if (id > root->id) search(root->right, id);
-	if (id < root->id) search(root->left, id);
-
-	if (id == root->id) {
-		std::cout << "name of the student of that id is " << root->name << std::endl;
-	}
-}
-
-void displayAll(Node* root) {
-	if (root == nullptr) return;
-
-	displayAll(root->left);  // left subtree
-	std::cout << "ID: " << root->id
-		<< ", Name: " << root->name
-		<< ", Score: " << root->score << std::endl;
-	displayAll(root->right); // right subtree
-}
+//0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
 
 
-Node* Delete(Node* root, int& id) {
-	if (root == nullptr) return nullptr;
-
-	if (id < root->id) root->left =  Delete(root->left, id);
-	else if (id > root->id) root->right = Delete(root->right, id);
-
-	else { 
-		if (root->left == nullptr  && root->right == nullptr) {
-			delete root;
-			root = nullptr;
-		}
-		else if (root->left == nullptr) {
-			Node* temp = root;
-			root = root->right;
-			delete temp;
-		}
-		else if (root->right == nullptr) {
-			Node* temp = root;
-			root = root->left;
-			delete temp;
-		}
-		else {
-			Node* temp = root->right;
-
-			while (temp->left != nullptr) {
-				temp = temp->left;
-			}
-
-			root->id = temp->id;
-			root->name = temp->name;
-			root->score = temp->score;
-				
-			root->right = Delete(root->right, temp->id);// root->right is the root in delete
-		}
-		return root;
-	}
-}
-
-Node* topper(Node* root) {
-	if (root == nullptr) return nullptr;
-
-	Node* lefttopper = topper(root->left);
-	Node* righttopper = topper(root->right);
-
-	Node* maxNode = root;
-
-	if (lefttopper != nullptr && lefttopper->score > maxNode->score)
-		maxNode = lefttopper;
-
-	if (righttopper != nullptr && righttopper->score > maxNode->score)
-		maxNode = righttopper;
-
-	return maxNode;
-	
-}
+//#include<iostream>
+//
+//int fibo(int num) {
+//
+//	if (num == 1) {
+//		return 0;
+//	}
+//	if (num == 2)
+//		return 1;
+//
+//	for (int i = 0; i < num; i++) {
+//
+//	}
+//}
+//
+//
+//
+//int main() {
+//	std::cout << fibo(5);
+//	return 0;
+//}
 
 
-int main() {
-	Node* root = nullptr;
-	bool running = true;
-	Node* final = nullptr;
-	int score, id, choose;
-	std::string name;
-
-	add(root, 5, "piyush", 50);
-	add(root, 6, "divya", 60);
-	add(root, 2, "prachi", 80);
-	add(root, 1, "luna", 100);
-
-	while (running) {
-		while (running) {
-			std::cout << "1. Add \n2. Display all \n3. Delete.\n4. Search a Student. \n5. Find the topper \n6. Exit! \n";
-			std::cin >> choose;
-			switch (choose) {
-			case 1:
-				system("cls");
-				std::cout << "Enter the name of the student" << std::endl;
-				std::cin >> name;
-				std::cout << "Enter the id" << std::endl;
-				std::cin >> id;
-				std::cout << "Enter the score:" << std::endl;
-				std::cin >> score;
-				add(root, id, name , score);
-				break;
-			
-			case 2:
-				system("cls");
-				displayAll(root);
-				break;
-			
-			case 3:
-				system("cls");
-				std::cout << "Enter the id of the one to be Deleted!" << std::endl;
-				std::cin >> id;
-				Delete(root, id);
-				break;
-			
-			case 4:
-				system("cls");
-				std::cout << "Enter the id of student to search for" << std::endl;
-				std::cin >> id;
-				search(root, id);
-				break;
-
-			case 5:
-				system("cls");
-				std::cout << "finding the topper..." << std::endl;
-				final = topper(root);
-
-				std::cout << "The student with the highest score is " << final->id << " - " << final->name << " - " << final->score << std::endl;
-				
-
-				break;
-
-			case 6:
-				running = false;
-				break;
-
-			default:
-				std::cout << "Invalid Choices!" << std::endl;
-				break;
-				
-			}
-		}
-	}
-	return 0;
-}
