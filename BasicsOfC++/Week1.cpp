@@ -15,10 +15,6 @@
 //	•	Use a while loop to let the player guess, providing “too high” or “too low” hints.
 //	•	Track guesses and display the total when they win.
 
-
-
-
-
 // write a program that takes a player's name(std::string) and health(int) as input and prints a status message (e.g. "alice has 100 health").
 
 

@@ -65,14 +65,14 @@ Base case: if the string length is 1, return it.
 
 	?? This makes you think about recursion with data structures(strings / arrays) instead of just numbers.*/
 
-#include<iostream>
-
-std::string rev(std::string word) {
-	if (word == "") return 0;
-	return 
-}
-
-int main() {
-	std::cout << rev("hello");
-	return 0;
-}
+//#include<iostream>
+//
+//std::string rev(std::string word) {
+//	if (word == "") return 0;
+//	return 
+//}
+//
+//int main() {
+//	std::cout << rev("hello");
+//	return 0;
+//}

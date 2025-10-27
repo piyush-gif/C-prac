@@ -324,175 +324,318 @@
 //Display all students in order.
 //
 //Count total students.
+//struct Node {
+//	int id;
+//	std::string name;
+//	int grade;
+//	Node* next;
+//};
+//
+//void add(Node*& head, int& id, std::string& name, int& grade, int& pos) {
+//	Node* newNode = new Node{ id, name, grade, nullptr };
+//	if (pos == 1) {
+//		newNode->next = head;
+//		head = newNode;
+//		return;
+//	}
+//
+//	Node* prev = nullptr;
+//	Node* curr = head;
+//
+//	for (int i = 1; i < pos && curr != nullptr; i++) { 
+//		prev = curr;
+//		curr = curr->next;
+//	}	                                                                                                                                                                                                                                                                                                                                     
+//
+//	if (prev != nullptr) {
+//		prev->next = newNode;
+//		newNode->next = curr;
+//	}
+//}
+//
+//void deleteId(Node*& head , int& id) {
+//	Node* temp = head;
+//
+//	if (head == nullptr) {
+//		return;
+//	}
+//
+//	if (temp->id == id) {
+//		head = head->next;
+//		delete temp;
+//		return;
+//	}
+//
+//	Node* curr = head;
+//	Node* prev = nullptr;
+//
+//	while (curr != nullptr && curr->id != id) {
+//		prev = curr;
+//		curr = curr->next;
+//	}
+//
+//	if (curr != nullptr) {
+//		prev->next = curr->next;
+//		delete curr;
+//	}
+//
+//}                                  
+//
+//void searchId(Node*& head, int& id) {
+//	Node* temp = head;
+//
+//	if (head == nullptr) return;
+//
+//	if (temp->id == id) {
+//		std::cout << temp->id << "\n" << temp->name << "\n" << temp->grade << "\n";
+//		std::cout << "--------" << std::endl;
+//		return;
+//	}
+//	temp = head->next;
+//	while (temp != nullptr && temp->id != id) {
+//		temp = temp->next;
+//	}
+//
+//	if (temp != nullptr) {
+//		std::cout << temp->id << "\n" << temp->name << "\n" << temp->grade << "\n";
+//	}
+//}
+//
+//void updateGrade(Node*& head, int& id, int& grade) {
+//	Node* temp = head;
+//	
+//	if (head == nullptr) return;
+//
+//	if (temp->id == id) {
+//		temp->grade = grade;
+//		return;
+//	}
+//	temp = head->next;
+//	while (temp != nullptr && temp->id != id) {
+//		temp = temp->next;
+//	}
+//
+//	if (temp != nullptr) {
+//		temp->grade = grade;
+//	}
+//}
+//
+//void display(Node*& head) {
+//	Node* temp = head;
+//	while (temp != nullptr) {
+//		std::cout << temp->id << "\n" << temp->name << "\n" << temp->grade << "\n";
+//		std::cout << "-------" << "\n";
+//		temp = temp->next;
+//	}
+//}
+//
+//
+//int main() {
+//
+//	Node* head = new Node{ 1, "piyush", 50, nullptr };
+//	head->next = new Node{ 2, "oana", 80, nullptr };
+//	head->next->next = new Node{ 3, "rachel", 70, nullptr };
+//	bool running = true;
+//	int options;
+//	int id, grade, pos;
+//	std::string name;
+//	while (running) {
+//		std::cout << "What do you want to do?" << std::endl;
+//		std::cout << "1. Add a student. \n2. Remove the student \n3. Look for a student. \n4. Update the Grade of a student? \n5. Display all the records \n6.Exit" << std::endl;
+//		std::cin >> options;
+//
+//		switch(options) {
+//		case 1:
+//			std::cout << "Enter the Id for the student" << std::endl;
+//			std::cin >> id;
+//			std::cout << "Enter the name of the student" << std::endl;
+//			std::cin >> name;
+//			std::cout << "Enter the Grade the student got" << std::endl;
+//			std::cin >> grade;
+//			std::cout << "Enter the position that you want the student to be at in the list" << std::endl;
+//			std::cin >> pos;
+//			system("cls");
+//			add(head, id, name, grade, pos);
+//			break;
+//
+//		case 2:
+//			std::cout << "Enter the Id of the student you want to remove from the list" << std::endl;
+//			std::cin >> id;
+//			system("cls");
+//			deleteId(head, id);
+//			break;
+//
+//		case 3:
+//			std::cout << "Enter the Id of the student you want to look for. " << std::endl;
+//			std::cin >> id;
+//			system("cls");
+//			searchId(head, id);
+//			break;
+//
+//		case 4:
+//			std::cout << "Enter the id of the student you want to update the grade" << std::endl;
+//			std::cin >> id;
+//			std::cout << "Enter the grade you want to give." << std::endl;
+//			std::cin >> grade;
+//			system("cls");
+//			updateGrade(head, id, grade);
+//			break;
+//
+//		case 5:
+//			system("cls");
+//			display(head);
+//			break;
+//
+//		case 6:
+//			std::cout << "Thank for using single linked list" << std::endl;
+//			system("cls");
+//			running = false;
+//			break;
+//		}
+//	}
+//};
+
+//🔹 Project 1: Student Record Manager(Singly Linked List)
+//
+//Concept : Manage a list of students where each student has :
+//
+//ID(int)
+//
+//Name(string)
+//
+//Grade(float)
+//
+//Features:
+//
+//Add a student(insert at end or specific position).
+//
+//Delete a student by ID.
+//
+//Search a student by ID.
+//
+//Update student grade.
+//
+//Display all students in order.
+//
+//Count total students.     
+// 
+// 
+
+#include<iostream>
+
 struct Node {
-	int id;
-	std::string name;
-	int grade;
+	int data;
 	Node* next;
 };
 
-void add(Node*& head, int& id, std::string& name, int& grade, int& pos) {
-	Node* newNode = new Node{ id, name, grade, nullptr };
-	if (pos == 1) {
-		newNode->next = head;
+Node* add(Node*& head, int stu) {
+
+	Node* newNode = new Node{ stu, nullptr };
+	if (head == nullptr) {
 		head = newNode;
-		return;
+		return head;
 	}
 
-	Node* prev = nullptr;
-	Node* curr = head;
-
-	for (int i = 1; i < pos && curr != nullptr; i++) { 
-		prev = curr;
-		curr = curr->next;
-	}	                                                                                                                                                                                                                                                                                                                                     
-
-	if (prev != nullptr) {
-		prev->next = newNode;
-		newNode->next = curr;
+	Node* temp = head;
+	while (temp->next != nullptr) {
+		temp = temp->next;
 	}
+
+	temp->next = newNode;
+	return head;
 }
 
-void deleteId(Node*& head , int& id) {
+
+Node* deleted(Node*& head, int stu) {
+	
+	if (head == nullptr)  return head;
+
 	Node* temp = head;
-
-	if (head == nullptr) {
-		return;
-	}
-
-	if (temp->id == id) {
+	if (head->data == stu) {
 		head = head->next;
 		delete temp;
-		return;
 	}
+	
+	Node* curr = head->next;
+	Node* prev = head;
 
-	Node* curr = head;
-	Node* prev = nullptr;
-
-	while (curr->id != id) {
+	while (curr != nullptr  && curr->data != stu) {
 		prev = curr;
 		curr = curr->next;
 	}
-
+	
 	if (curr != nullptr) {
 		prev->next = curr->next;
 		delete curr;
 	}
-
-}                                  
-
-void searchId(Node*& head, int& id) {
-	Node* temp = head;
-
-	if (head == nullptr) return;
-
-	if (temp->id == id) {
-		std::cout << temp->id << "\n" << temp->name << "\n" << temp->grade << "\n";
-		std::cout << "--------" << std::endl;
-		return;
-	}
-	temp = head->next;
-	while (temp != nullptr && temp->id != id) {
-		temp = temp->next;
-	}
-
-	if (temp != nullptr) {
-		std::cout << temp->id << "\n" << temp->name << "\n" << temp->grade << "\n";
-	}
-}
-
-void updateGrade(Node*& head, int& id, int& grade) {
-	Node* temp = head;
 	
-	if (head == nullptr) return;
-
-	if (temp->id == id) {
-		temp->grade = grade;
-		return;
-	}
-	temp = head->next;
-	while (temp != nullptr && temp->id != id) {
-		temp = temp->next;
-	}
-
-	if (temp != nullptr) {
-		temp->grade = grade;
-	}
+	return head;
 }
 
 void display(Node*& head) {
 	Node* temp = head;
+	int count = 0;
 	while (temp != nullptr) {
-		std::cout << temp->id << "\n" << temp->name << "\n" << temp->grade << "\n";
-		std::cout << "-------" << "\n";
+		std::cout << temp->data << std::endl;
+		count++;
 		temp = temp->next;
 	}
+	std::cout << "total studnets are " << count <<std::endl;
 }
 
+void search(Node*& head, int id) {
+	if (head == nullptr) return;
 
-int main() {
+	if (head->data == id) std::cout << "Found id!" << head->data << std::endl; return;
 
-	Node* head = new Node{ 1, "piyush", 50, nullptr };
-	head->next = new Node{ 2, "oana", 80, nullptr };
-	head->next->next = new Node{ 3, "rachel", 70, nullptr };
-	bool running = true;
-	int options;
-	int id, grade, pos;
-	std::string name;
-	while (running) {
-		std::cout << "What do you want to do?" << std::endl;
-		std::cout << "1. Add a student. \n2. Remove the student \n3. Look for a student. \n4. Update the Grade of a student? \n5. Display all the records \n6.Exit" << std::endl;
-		std::cin >> options;
-
-		switch(options) {
-		case 1:
-			std::cout << "Enter the Id for the student" << std::endl;
-			std::cin >> id;
-			std::cout << "Enter the name of the student" << std::endl;
-			std::cin >> name;
-			std::cout << "Enter the Grade the student got" << std::endl;
-			std::cin >> grade;
-			std::cout << "Enter the position that you want the student to be at in the list" << std::endl;
-			std::cin >> pos;
-			system("cls");
-			add(head, id, name, grade, pos);
-			break;
-
-		case 2:
-			std::cout << "Enter the Id of the student you want to remove from the list" << std::endl;
-			std::cin >> id;
-			system("cls");
-			deleteId(head, id);
-			break;
-
-		case 3:
-			std::cout << "Enter the Id of the student you want to look for. " << std::endl;
-			std::cin >> id;
-			system("cls");
-			searchId(head, id);
-			break;
-
-		case 4:
-			std::cout << "Enter the id of the student you want to update the grade" << std::endl;
-			std::cin >> id;
-			std::cout << "Enter the grade you want to give." << std::endl;
-			std::cin >> grade;
-			system("cls");
-			updateGrade(head, id, grade);
-			break;
-
-		case 5:
-			system("cls");
-			display(head);
-			break;
-
-		case 6:
-			std::cout << "Thank for using single linked list" << std::endl;
-			system("cls");
-			running = false;
-			break;
-		}
+	Node* temp = head->next;
+	while (temp->next != nullptr && temp->data != id) {
+		temp = temp->next;
 	}
-};
 
-                                                                                                  
+	std::cout << "found it!" << temp->data <<std::endl;
+
+}
+
+Node* nth(Node*& head, int pos, int data) {
+	if (head == nullptr) return head;
+	Node* newNode = new Node{ data, nullptr };
+
+	if (pos == 1) {
+		newNode->next = head;
+		head = newNode;
+		return head;
+	}
+	Node* curr = head;
+	Node* prev = nullptr;
+
+	for (int i = 1; i < pos && curr->next != nullptr; i++) {
+		prev = curr;
+		curr = curr->next;
+	}
+
+	prev->next = newNode;
+	newNode->next = curr;
+
+	return head;
+
+}
+int main() {
+	Node* head = new Node{ 5, nullptr };
+	head->next = new Node{ 6, nullptr };
+	head->next->next = new Node{ 1, nullptr };
+	//search(head, 5);
+
+
+	/*add(head, 7);
+	display(head);
+
+	deleted(head, 5);
+	display(head);*/
+
+
+	nth(head, 2, 2);
+	display(head);
+
+
+}

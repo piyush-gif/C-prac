@@ -11,7 +11,7 @@
 //	Mini - Project: Turn - Based RPG
 //	•	Create a turn - based combat system with a std::queue for turn order.
 //	•	Use a std::map to store character stats.
-//	•	Allow saving / loading the battle state to a file.
+//	•	Allow saving / loading the battle state to a file. 
 
 
 //#include<iostream>
