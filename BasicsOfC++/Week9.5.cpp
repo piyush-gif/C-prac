@@ -521,121 +521,121 @@
 // 
 // 
 
-#include<iostream>
-
-struct Node {
-	int data;
-	Node* next;
-};
-
-Node* add(Node*& head, int stu) {
-
-	Node* newNode = new Node{ stu, nullptr };
-	if (head == nullptr) {
-		head = newNode;
-		return head;
-	}
-
-	Node* temp = head;
-	while (temp->next != nullptr) {
-		temp = temp->next;
-	}
-
-	temp->next = newNode;
-	return head;
-}
-
-
-Node* deleted(Node*& head, int stu) {
-	
-	if (head == nullptr)  return head;
-
-	Node* temp = head;
-	if (head->data == stu) {
-		head = head->next;
-		delete temp;
-	}
-	
-	Node* curr = head->next;
-	Node* prev = head;
-
-	while (curr != nullptr  && curr->data != stu) {
-		prev = curr;
-		curr = curr->next;
-	}
-	
-	if (curr != nullptr) {
-		prev->next = curr->next;
-		delete curr;
-	}
-	
-	return head;
-}
-
-void display(Node*& head) {
-	Node* temp = head;
-	int count = 0;
-	while (temp != nullptr) {
-		std::cout << temp->data << std::endl;
-		count++;
-		temp = temp->next;
-	}
-	std::cout << "total studnets are " << count <<std::endl;
-}
-
-void search(Node*& head, int id) {
-	if (head == nullptr) return;
-
-	if (head->data == id) std::cout << "Found id!" << head->data << std::endl; return;
-
-	Node* temp = head->next;
-	while (temp->next != nullptr && temp->data != id) {
-		temp = temp->next;
-	}
-
-	std::cout << "found it!" << temp->data <<std::endl;
-
-}
-
-Node* nth(Node*& head, int pos, int data) {
-	if (head == nullptr) return head;
-	Node* newNode = new Node{ data, nullptr };
-
-	if (pos == 1) {
-		newNode->next = head;
-		head = newNode;
-		return head;
-	}
-	Node* curr = head;
-	Node* prev = nullptr;
-
-	for (int i = 1; i < pos && curr->next != nullptr; i++) {
-		prev = curr;
-		curr = curr->next;
-	}
-
-	prev->next = newNode;
-	newNode->next = curr;
-
-	return head;
-
-}
-int main() {
-	Node* head = new Node{ 5, nullptr };
-	head->next = new Node{ 6, nullptr };
-	head->next->next = new Node{ 1, nullptr };
-	//search(head, 5);
-
-
-	/*add(head, 7);
-	display(head);
-
-	deleted(head, 5);
-	display(head);*/
-
-
-	nth(head, 2, 2);
-	display(head);
-
-
-}
+//#include<iostream>
+//
+//struct Node {
+//	int data;
+//	Node* next;
+//};
+//
+//Node* add(Node*& head, int stu) {
+//
+//	Node* newNode = new Node{ stu, nullptr };
+//	if (head == nullptr) {
+//		head = newNode;
+//		return head;
+//	}
+//
+//	Node* temp = head;
+//	while (temp->next != nullptr) {
+//		temp = temp->next;
+//	}
+//
+//	temp->next = newNode;
+//	return head;
+//}
+//
+//
+//Node* deleted(Node*& head, int stu) {
+//	
+//	if (head == nullptr)  return head;
+//
+//	Node* temp = head;
+//	if (head->data == stu) {
+//		head = head->next;
+//		delete temp;
+//	}
+//	
+//	Node* curr = head->next;
+//	Node* prev = head;
+//
+//	while (curr != nullptr  && curr->data != stu) {
+//		prev = curr;
+//		curr = curr->next;
+//	}
+//	
+//	if (curr != nullptr) {
+//		prev->next = curr->next;
+//		delete curr;
+//	}
+//	
+//	return head;
+//}
+//
+//void display(Node*& head) {
+//	Node* temp = head;
+//	int count = 0;
+//	while (temp != nullptr) {
+//		std::cout << temp->data << std::endl;
+//		count++;
+//		temp = temp->next;
+//	}
+//	std::cout << "total studnets are " << count <<std::endl;
+//}
+//
+//void search(Node*& head, int id) {
+//	if (head == nullptr) return;
+//
+//	if (head->data == id) std::cout << "Found id!" << head->data << std::endl; return;
+//
+//	Node* temp = head->next;
+//	while (temp->next != nullptr && temp->data != id) {
+//		temp = temp->next;
+//	}
+//
+//	std::cout << "found it!" << temp->data <<std::endl;
+//
+//}
+//
+//Node* nth(Node*& head, int pos, int data) {
+//	if (head == nullptr) return head;
+//	Node* newNode = new Node{ data, nullptr };
+//
+//	if (pos == 1) {
+//		newNode->next = head;
+//		head = newNode;
+//		return head;
+//	}
+//	Node* curr = head;
+//	Node* prev = nullptr;
+//
+//	for (int i = 1; i < pos && curr->next != nullptr; i++) {
+//		prev = curr;
+//		curr = curr->next;
+//	}
+//
+//	prev->next = newNode;
+//	newNode->next = curr;
+//
+//	return head;
+//
+//}
+//int main() {
+//	Node* head = new Node{ 5, nullptr };
+//	head->next = new Node{ 6, nullptr };
+//	head->next->next = new Node{ 1, nullptr };
+//	//search(head, 5);
+//
+//
+//	/*add(head, 7);
+//	display(head);
+//
+//	deleted(head, 5);
+//	display(head);*/
+//
+//
+//	nth(head, 2, 2);
+//	display(head);
+//
+//
+//}
