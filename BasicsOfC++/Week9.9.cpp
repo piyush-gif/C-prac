@@ -292,3 +292,118 @@ Find Topper	Find the student with the highest marks (custom traversal).
 //}
 
 
+/*
+mini project
+Core Features to Implement
+Feature	Description
+Add Student	Insert a new record into the BST (by ID).
+Search Student	Find a student by ID and show their info.
+Display All Students	Inorder traversal → shows students sorted by ID.
+Delete Student	Remove a record by ID.
+Find Topper	Find the student with the highest marks (custom traversal).
+
+*/
+#include<iostream>
+
+struct Node {
+	int data;
+	Node* left;
+	Node* right;
+};
+
+
+Node* add(Node*& root, int num) {
+	if (root == nullptr) {
+		root = new Node{ num, nullptr, nullptr };
+		return root;
+	} 
+
+	if (num > root->data) return add(root->right, num);
+	else if (num < root->data) return add(root->left, num);
+	
+	return root;
+}
+
+void find(Node*& root, int num) {
+	if (root == nullptr) return; 
+
+	if(num < root->data) find(root->left, num);
+	
+	else if(num > root->data) find(root->right, num);
+
+	if (root->data == num) {
+		std::cout << "found num!" << root->data<< std::endl;
+	}
+}
+
+void display(Node*& root) {
+	if (root == nullptr) return;
+
+	display(root->left);
+	std::cout << root->data << std::endl;
+
+	display(root->right);
+}
+
+Node* deleted(Node*& root, int num) {
+	if (root == nullptr) return nullptr;
+
+	if (num > root->data) root->right = deleted(root->right, num);
+	else if (num < root->data) root->left = deleted(root->left, num);
+	else {
+		if (root->left == nullptr && root->right == nullptr) {
+			delete root;
+			root = nullptr;
+		}
+		else if (root->left == nullptr) {
+			Node* temp = root;
+			root = root->right;
+			delete temp;
+		}
+		else if (root->right == nullptr) {
+			Node* temp = root;
+			root = root->left;
+			delete temp;
+		}
+		else {
+			Node* temp = root->right;
+			while (temp->left != nullptr) {
+				temp = temp->left;
+			}
+
+			temp->data = root->data;
+
+			root->right = deleted(root->right, temp->data);
+		}
+	}
+	return root;
+}
+
+Node* topper(Node*& root) {
+	if (root == nullptr) return nullptr;
+
+	Node* left = topper(root->left);
+	Node* right = topper(root->right);
+
+	Node* max = root;
+
+	if (left != nullptr && left->data > max->data) max = left;
+	if (right != nullptr && right->data > max->data)  max = right;
+
+	return max;
+}
+
+int main() {
+	Node* root = nullptr;
+
+	add(root, 5);
+	add(root, 4);
+	add(root, 7);
+
+	/*display(root);
+	find(root, 4);*/
+	deleted(root, 4);
+	display(root);
+	std::cout << topper(root)->data;
+}
+
