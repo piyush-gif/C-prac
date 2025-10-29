@@ -64,8 +64,73 @@
 //
 //	dfs(visited, graph, 0);
 //}
+#include<iostream>
+#include<vector>
+#include<algorithm>
+struct Graph {
+	int vertices;
+	std::vector<std::vector<int>> adlist     ;
 
+	Graph(int v) {
+		vertices = v;
+		adlist.resize(v);
+	}
+};
 
+void dfs(int node,std::vector<std::vector<int>>& g,std::vector<bool>& visited) {
+	visited[node] = true;
+	std::cout << node << " ";
+
+	for (int neighbour : g[node]) {
+		if (!visited[neighbour]){
+			dfs(neighbour, g, visited);
+		}
+	}
+}
+
+void bfs(int start, std::vector<std::vector<int>>& g, std::vector<bool>& visited) {
+	std::queue<int> q;
+	visited[start] = true;
+	q.push(start);
+
+	while (!q.empty()) {
+		int node = q.front();
+		q.pop();
+		std::cout << node << " ";
+
+		for (int neighbour : g[node]) {
+			if (!visited[neighbour]) {
+				visited[neighbour] = true;
+				q.push(neighbour);
+			}
+		}
+	}
+}
+
+int main() {
+	Graph g(5);
+
+	g.adlist[0].push_back(1);
+	g.adlist[0].push_back(2);
+
+	g.adlist[1].push_back(0);
+	g.adlist[1].push_back(3);
+
+	g.adlist[2].push_back(3);
+	g.adlist[2].push_back(0);
+
+	g.adlist[3].push_back(2);
+	g.adlist[3].push_back(1);
+
+	std::cout << "DFS: ";
+	std::vector<bool> visited(g.vertices, false);
+	dfs(0, g.adlist, visited);
+
+	std::cout << "\nBFS: ";
+	std::vector<bool> visited2(g.vertices, false);
+	bfs(0, g.adlist, visited2);
+	return 0;
+}
 
 
 
