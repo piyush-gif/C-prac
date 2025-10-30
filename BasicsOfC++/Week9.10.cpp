@@ -67,6 +67,8 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#include<queue>
+
 struct Graph {
 	int vertices;
 	std::vector<std::vector<int>> adlist     ;
@@ -80,10 +82,9 @@ struct Graph {
 void dfs(int node,std::vector<std::vector<int>>& g,std::vector<bool>& visited) {
 	visited[node] = true;
 	std::cout << node << " ";
-
-	for (int neighbour : g[node]) {
-		if (!visited[neighbour]){
-			dfs(neighbour, g, visited);
+	for (int v : g[node]) {
+		if (!visited[v]) {
+			dfs(v, g, visited);
 		}
 	}
 }
@@ -91,24 +92,23 @@ void dfs(int node,std::vector<std::vector<int>>& g,std::vector<bool>& visited) {
 void bfs(int start, std::vector<std::vector<int>>& g, std::vector<bool>& visited) {
 	std::queue<int> q;
 	visited[start] = true;
-	q.push(start);
 
+	q.push(start);
 	while (!q.empty()) {
 		int node = q.front();
-		q.pop();
 		std::cout << node << " ";
-
-		for (int neighbour : g[node]) {
-			if (!visited[neighbour]) {
-				visited[neighbour] = true;
-				q.push(neighbour);
+		q.pop();
+		for (int v : g[node]) {
+			if (!visited[v]) {
+				visited[v] = true;
+				q.push(v);
 			}
 		}
 	}
 }
 
 int main() {
-	Graph g(5);
+	Graph g(4);
 
 	g.adlist[0].push_back(1);
 	g.adlist[0].push_back(2);
