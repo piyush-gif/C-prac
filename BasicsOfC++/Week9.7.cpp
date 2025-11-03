@@ -240,88 +240,88 @@
 //Search for a song by title or artist.
 
 
-#include<iostream>
-
-struct Node {
-	int data;
-	Node* next;
-	Node* prev;
-};
-
-Node* add(Node*& head, int num, int pos) {
-
-	Node* newNode = new Node{ num, nullptr, nullptr };
-
-	if (head == nullptr || pos == 1) {
-		newNode->next = head;
-		if(head) head->prev = newNode;
-		head = newNode;
-		return head;
-	}
-	Node* curr = head;
-
-	for (int i = 1; i < pos - 1 && curr->next != nullptr; i++) {
-		curr = curr->next;
-	}
-
-	newNode->next = curr->next;
-	newNode->prev = curr;
-	if(curr->next != nullptr) curr->next->prev = newNode;
-	curr->next = newNode;
-
-	return head;
-}
-
-void display(Node*& head) {
-	if (head == nullptr) return;
-	Node* temp = head;
-	while (temp != nullptr) {
-		std::cout << temp->data << std::endl;
-		temp = temp->next;
-	}
-}
-
-Node* deleted(Node*& head, int pos) {
-	if (head == nullptr || pos <= 0 ) return head;
-	Node* temp = head;
-
-	if (pos == 1) {
-		head = head->next;
-		if (head) head->prev = nullptr;
-		delete temp;
-		return head;
-	}
-	Node* curr = head;
-
-	for (int i = 1; curr->next != nullptr && i < pos; i++) {
-		curr = curr->next;
-	}
-
-	if (curr == nullptr)
-		return head;
-
-	if (curr->prev) curr->prev->next = curr->next;
-
-	if (curr->next) curr->next->prev = curr->prev;
-
-
-	delete curr;
-
-	return head;
-}
-
-
-int main() {
-
-	Node* head = new Node{ 1, nullptr, nullptr };
-	head->next = new Node{ 2, nullptr, nullptr };
-	head->next->prev = head;
-	head->next->next = new Node{ 3, nullptr, nullptr };
-	head->next->next->prev = head->next;
-
-	add(head, 4, 3);
-	display(head);
-
-	deleted(head, 1);
-	display(head);
-}
+//#include<iostream>
+//
+//struct Node {
+//	int data;
+//	Node* next;
+//	Node* prev;
+//};
+//
+//Node* add(Node*& head, int num, int pos) {
+//
+//	Node* newNode = new Node{ num, nullptr, nullptr };
+//
+//	if (head == nullptr || pos == 1) {
+//		newNode->next = head;
+//		if(head) head->prev = newNode;
+//		head = newNode;
+//		return head;
+//	}
+//	Node* curr = head;
+//
+//	for (int i = 1; i < pos - 1 && curr->next != nullptr; i++) {
+//		curr = curr->next;
+//	}
+//
+//	newNode->next = curr->next;
+//	newNode->prev = curr;
+//	if(curr->next != nullptr) curr->next->prev = newNode;
+//	curr->next = newNode;
+//
+//	return head;
+//}
+//
+//void display(Node*& head) {
+//	if (head == nullptr) return;
+//	Node* temp = head;
+//	while (temp != nullptr) {
+//		std::cout << temp->data << std::endl;
+//		temp = temp->next;
+//	}
+//}
+//
+//Node* deleted(Node*& head, int pos) {
+//	if (head == nullptr || pos <= 0 ) return head;
+//	Node* temp = head;
+//
+//	if (pos == 1) {
+//		head = head->next;
+//		if (head) head->prev = nullptr;
+//		delete temp;
+//		return head;
+//	}
+//	Node* curr = head;
+//
+//	for (int i = 1; curr->next != nullptr && i < pos; i++) {
+//		curr = curr->next;
+//	}
+//
+//	if (curr == nullptr)
+//		return head;
+//
+//	if (curr->prev) curr->prev->next = curr->next;
+//
+//	if (curr->next) curr->next->prev = curr->prev;
+//
+//
+//	delete curr;
+//
+//	return head;
+//}
+//
+//
+//int main() {
+//
+//	Node* head = new Node{ 1, nullptr, nullptr };
+//	head->next = new Node{ 2, nullptr, nullptr };
+//	head->next->prev = head;
+//	head->next->next = new Node{ 3, nullptr, nullptr };
+//	head->next->next->prev = head->next;
+//
+//	add(head, 4, 3);
+//	display(head);
+//
+//	deleted(head, 1);
+//	display(head);
+//}

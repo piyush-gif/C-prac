@@ -406,4 +406,103 @@ Find Topper	Find the student with the highest marks (custom traversal).
 //	display(root);
 //	std::cout << topper(root)->data;
 //}
+#include<iostream>
+#include<vector>
+#include<map>
+using namespace std;
 
+//vector<int> topKFrequent(vector<int>& nums, int k) {
+//
+//    map<int, int> mymap;
+//    for (int x : nums) {
+//        mymap[x] += 1;
+//    }
+//
+//    map<int, int> second;
+//    for (int i = 0; i < mymap.size(); i++) {
+//        second[mymap[i]] = mymap[i];
+//    }
+//    vector<int> arr;
+//    for (int i = 1; i <= k; i++) {
+//        arr.push_back(second[-i]);
+//    }
+//    return arr;
+//
+//}
+int main() {
+    int n = 4;
+    string a;
+    for (int i = 0; i < n; i++) {
+        a = "";
+        for (int j = i + 1; j < n ; j++) {
+            a += " ";  
+        }
+        
+        for (int k = -1; k < i ; k++) {
+            a += "*";
+        }
+        std::cout << a;
+        std::cout << "\n";
+    }
+        
+
+
+
+
+
+
+
+
+
+    /*int k = 2;
+    vector<int>  nums = { 1, 2 };
+    vector<int> store;
+    map<int, int> mymap;
+
+    for (int x : nums) {
+        mymap[x] += 1;
+    }
+    for (auto x : mymap) {
+        store.push_back(x.second);
+    }
+    for (int i = 0; i < store.size() - 1; i++) {
+        for (int j = i + 1; j < store.size(); j++) {
+            if (store[i] < store[j]) {
+                int temp = store[i];
+                store[i] = store[j];
+                store[j] = temp;
+            }
+        }
+    }
+    while (store.size() > k) {
+        store.pop_back();
+    }
+    vector<int> arr;
+    for (auto x : mymap) {
+        int i = 0;
+        if (x.second == store[i]) {
+            arr.push_back(x.first);
+            std::cout << arr[i];
+            i++;
+        } 
+    }*/
+
+
+    //map<int, int> map2;
+
+    //int k = 2;
+    //for (auto x : mymap) {
+    //    int keys = x.second;
+    //    map2[keys] = x.first;
+    //}
+
+  /*  vector<int> arr;
+    auto it = map2.end();
+    for (int i = 0; i < k; i++) {
+        --it;
+        arr.push_back(it->first);
+        std::cout << arr[i];
+    }*/
+    
+	return 0;
+}
