@@ -429,80 +429,166 @@ using namespace std;
 //    return arr;
 //
 //}
+
+
+//void shape() {
+//
+//    int n = 4;
+//    string a;
+//    for (int i = 0; i < n; i++) {
+//        a = "";
+//        for (int j = i + 1; j < n; j++) {
+//            a += " ";
+//        }
+//
+//        for (int k = -1; k < i; k++) {
+//            a += "*";
+//        }
+//        std::cout << a;
+//        std::cout << "\n";
+//    }
+//}
+
+
+
+//int main() {
+//    
+//    int k = 2;
+//    vector<int>  nums = { 1, 2, 2, 3, 3 };
+//    vector<int> store;
+//    map<int, int> mymap;
+//
+//    for (int x : nums) {
+//        mymap[x] += 1;
+//    }
+//    for (auto& y : mymap) {
+//        store.push_back(y.second);
+//    }
+//    for (int i = 0; i < store.size() - 1; i++) {
+//        for (int j = i + 1; j < store.size(); j++) {
+//            if (store[i] < store[j]) {
+//                int temp = store[i];
+//                store[i] = store[j];
+//                store[j] = temp;
+//            }
+//        }
+//    }
+//    vector<int> shor;
+//    for (int i = 0; i < k; i++) {
+//        shor.push_back(store[i]);
+//    }
+//
+//    //for (int i = 0; i < shor.size(); i++) {
+//    //    cout << shor[i];
+//    //}
+//
+//    vector<int> arr;
+//    for (int i = 0; i < k; i++) {
+//        for (const auto& [key, value] : mymap) {
+//            if (store[i] == value) {
+//                arr.push_back(key); 
+//                mymap[key] = 0;
+//                break;
+//            }
+//        }
+//    }
+//    for (int i = 0; i < arr.size(); i++) {
+//        cout << arr[i];
+//    }
+//
+//    
+//	return 0;
+//}
+//#include <string>
+//
+//map<char, string>  mymap;
+//
+//string encode(vector<string>& strs) {
+//
+//	string ecode;
+//	for (int i = 0; i < strs.size(); i++) {
+//		char s = i;
+//		mymap[s] = strs[i];
+//		ecode += s;
+//	}
+//	cout << ecode;
+//	return ecode;
+//}
+//
+//vector<string> decode(string s) {
+//	vector<char> strs;
+//	vector<string> dcode;
+//	for (char x : s) {
+//		strs.push_back(x);
+//	}
+//	for (int i = 0; i < strs.size(); i++) {
+//		for (const auto [key, value] : mymap) {
+//			if (strs[i] == key) {
+//				dcode.push_back(value);
+//			}
+//		}
+//	}
+//	return dcode;
+//}
+
+
+//int main() {
+//	//int n = 4;
+//	//
+//	//for (int i = 0; i < n; i++) {
+//	//	string a = "";
+//	//	for (int j = i; j < n; j++) {
+//	//		a += "-";
+//	//	}
+//	//	for (int k = 0; k < i + 1; k++) {
+//	//		a += '*';
+//	//	}
+//
+//	//	std::cout << a;
+//	//	std::cout << '\n';
+//	//}
+//
+//	//for (int i = 0; i < n; i++) {
+//	//	string a = "";
+//	//	for (int j = 0; j < i+ 1; j++) {
+//	//		a += "*";
+//	//	}
+//	//	std::cout << a;
+//	//	std::cout << endl;
+//
+//	//}
+//
+//	//for (int i = 0; i < n; i++) {
+//	//	string a = "";
+//	//	for (int j = i; j < n; j++) {
+//	//		a += "*";
+//	//	}
+//	//	std::cout << a;
+//	//	cout << endl;
+//	//}
+//
+//	//for (int i = 0; i < n; i++) {
+//	//	string a = "";
+//	//	for (int k = 0; k < i; k++) {
+//	//		a += "-";
+//	//	}
+//	//	for (int j = i; j < n; j++) {
+//	//		a += "*";
+//	//	}
+//	//	
+//	//	cout << a;
+//	//	cout << endl;
+//	//}
+//	vector<string> strs = { "neet", "code", "love", "you" };
+//	encode(strs);
+//
+//	return 0;
+//}
+
+
 int main() {
-    int n = 4;
-    string a;
-    for (int i = 0; i < n; i++) {
-        a = "";
-        for (int j = i + 1; j < n ; j++) {
-            a += " ";  
-        }
-        
-        for (int k = -1; k < i ; k++) {
-            a += "*";
-        }
-        std::cout << a;
-        std::cout << "\n";
-    }
-        
 
-
-
-
-
-
-
-
-
-    /*int k = 2;
-    vector<int>  nums = { 1, 2 };
-    vector<int> store;
-    map<int, int> mymap;
-
-    for (int x : nums) {
-        mymap[x] += 1;
-    }
-    for (auto x : mymap) {
-        store.push_back(x.second);
-    }
-    for (int i = 0; i < store.size() - 1; i++) {
-        for (int j = i + 1; j < store.size(); j++) {
-            if (store[i] < store[j]) {
-                int temp = store[i];
-                store[i] = store[j];
-                store[j] = temp;
-            }
-        }
-    }
-    while (store.size() > k) {
-        store.pop_back();
-    }
-    vector<int> arr;
-    for (auto x : mymap) {
-        int i = 0;
-        if (x.second == store[i]) {
-            arr.push_back(x.first);
-            std::cout << arr[i];
-            i++;
-        } 
-    }*/
-
-
-    //map<int, int> map2;
-
-    //int k = 2;
-    //for (auto x : mymap) {
-    //    int keys = x.second;
-    //    map2[keys] = x.first;
-    //}
-
-  /*  vector<int> arr;
-    auto it = map2.end();
-    for (int i = 0; i < k; i++) {
-        --it;
-        arr.push_back(it->first);
-        std::cout << arr[i];
-    }*/
-    
-	return 0;
+	for (int i = 0; i < 5; i++) {
+		std::cout << i;
+	}
 }
