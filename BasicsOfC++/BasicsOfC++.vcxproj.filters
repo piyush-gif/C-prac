@@ -75,5 +75,8 @@
     <ClCompile Include="Week9.11.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sudoku.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -584,69 +584,72 @@ using namespace std;
 //
 //	return 0;
 //}
-#include <cstdlib>
-#include <ctime>
+//void check(vector<vector<string>>& board) {
+//	map<string, int> mymap;
+//	
+//	for (int i = 0; i < board.size(); i++) {
+//		for (int j = 0; j < board[i].size(); j++) {
+//			for (auto [key, value] : mymap) {
+//				if (key != board[i][j]) {
+//					mymap[board[i][j]] = 1;
+//				}
+//				else {
+//					
+//				}
+//			}
+//		}
+//	}
+//}
+//
+//
+//int main() {
+//	vector<vector<string>> board =
+//	  { {"1", "2", ".", ".", "3", ".", ".", ".", "."},
+//		{"4", ".", ".", "5", ".", ".", ".", ".", "."},
+//		{".", "9", "8", ".", ".", ".", ".", ".", "3"},
+//		{"5", ".", ".", ".", "6", ".", ".", ".", "4"},
+//		{".", ".", ".", "8", ".", "3", ".", ".", "5"},
+//		{"7", ".", ".", ".", "2", ".", ".", ".", "6"},
+//		{".", ".", ".", ".", ".", ".", "2", ".", "."},
+//		{".", ".", ".", "4", "1", "9", ".", ".", "8"},
+//		{".", ".", ".", ".", "8", ".", ".", "7", "9"} };
+//	
+//
+//
+//}
 
+void easy(vector<vector<int>> A, vector<vector<int>> B) {
+    vector<int> arr1;
+    vector<int> arr2;
 
+    int calc = 0;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            arr1.push_back(A[i][j]);
+       }
+    }
+    for (int j = 0; j < 2; j++) {
+        for (int k = 0; k < 3; k++) {
+            arr2.push_back(B[k][j]);
+        }
+    }
+    for (int i = 0; i < 3; i++) {
+        calc += arr1[i] * arr2[i];
 
-vector<int> shiftArr(vector<int> array, int shift) {
-	vector<int> array2;
-	int size = array.size() - shift ;
-	for (int i = size; i < array.size(); i++) {
-			array2.push_back(array[i]);
-
-	}
-	for (int i = 0; i < size; i++) {
-		array2.push_back(array[i]);
-	}
-	return array2;
+    }
+   
 }
-
-vector<vector<int>> sudoku(vector<int> array) {
-	vector<vector<int>> sudo;
-	vector<int> array1 = array;
-	for (int i = 0; i < array.size(); i++) {
-		if (i == 0) {
-			sudo.push_back(array);
-		}
-		else if (i == 2 || i == 5) {
-			array1 = shiftArr(array1, 1);
-			sudo.push_back(array1);
-		}
-		else {
-			array1 = shiftArr(array1, 3);
-			sudo.push_back(array1);
-		}
-	}
-	return sudo;
-}
-
-void print(vector<vector<int>> array, int flag) {
-	
-	for (int i = 0; i < array.size(); i++) {
-		for (int j = 0; j < array[i].size(); j++) {
-			int random_num = rand() % 9 + 1;
-			if (flag == 0) {
-				random_num = 10;
-			}
-			if (random_num > 7) {
-				std::cout << array[i][j] << " ";
-			}
-			else {
-				std::cout << " " << " ";
-			}
-		}
-		std::cout << std::endl;
-	}
-}
-
 
 int main() {
-	srand(time(0)); 
-	
-	vector<int> array = { 1,2,3,4,5,6,7,8,9};
+    vector<vector<int>> A = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
 
-	print(sudoku(array), 0);
-	print(sudoku(array), 1);
-
+    vector<vector<int>> B = {
+        {7, 8},
+        {9, 10},
+        {11, 12}
+    };
+    easy(A, B);
 }
