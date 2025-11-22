@@ -617,39 +617,71 @@ using namespace std;
 //
 //
 //}
+// {{1, 2, 3},
+// { 4, 5, 6 }};
+//
+//
+//{ { 7, 8 },
+//  { 9, 10 },
+//  { 11, 12 }
+//};
 
-void easy(vector<vector<int>> A, vector<vector<int>> B) {
-    vector<int> arr1;
-    vector<int> arr2;
-
-    int calc = 0;
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 3; j++) {
-            arr1.push_back(A[i][j]);
-       }
-    }
-    for (int j = 0; j < 2; j++) {
-        for (int k = 0; k < 3; k++) {
-            arr2.push_back(B[k][j]);
+vector<vector<int>> matrixMul(vector<vector<int>> A, vector<vector<int>> B) {
+    vector<vector<int>> arr;
+    
+    int total = 0;
+    for (int i = 0; i < A.size(); i++) {
+        vector<int> arr2;
+        for (int j = 0; j < B.size(); j++) {
+            total += A[i][j] * B[j][i];
+            
         }
-    }
-    for (int i = 0; i < 3; i++) {
-        calc += arr1[i] * arr2[i];
-
-    }
-   
+        arr2.push_back(total);
+        arr.push_back(arr2);
+   }
+    return arr;
 }
 
-int main() {
-    vector<vector<int>> A = {
-        {1, 2, 3},
-        {4, 5, 6}
-    };
 
-    vector<vector<int>> B = {
-        {7, 8},
-        {9, 10},
-        {11, 12}
-    };
-    easy(A, B);
+void isMatrixMul(vector<vector<int>> A, vector<vector<int>> B) {
+    for (int i = 0; i < A.size(); i++) {
+        if (A[i].size() != B.size()) throw "matrix multiplication not possible";
+    }  
+    for (int i = 1; i < B.size(); i++) {
+        if (B[0].size() != B[i].size()) throw "matrix multiplication not possible";
+    }
+}
+
+void printMatrix(vector<vector<int>> array) {
+
+    for (int i = 0; i < array.size(); i++) {
+        for (int j = 0; j < array[i].size(); j++) {
+
+            std::cout << array[i][j] << " ";
+        }
+        std::cout << endl;
+    }
+}
+
+
+int main() {
+    
+    try {
+        vector<vector<int>> A = {{1, 2, 3},
+                                {4, 5, 6}};
+
+        vector<vector<int>> B = {{7, 8},
+                                 {9, 10},
+                                 {11, 12}};
+        isMatrixMul(A, B);
+        vector<vector<int>> array = matrixMul(A, B);
+
+        printMatrix(array);
+       
+
+    }
+    catch (const char* msg) {
+        std::cout << msg;
+    }
+
 }
