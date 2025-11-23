@@ -627,19 +627,17 @@ using namespace std;
 //};
 
 vector<vector<int>> matrixMul(vector<vector<int>> A, vector<vector<int>> B) {
-    vector<vector<int>> arr;
-    
-    int total = 0;
-    for (int i = 0; i < A.size(); i++) {
-        vector<int> arr2;
-        for (int j = 0; j < B.size(); j++) {
-            total += A[i][j] * B[j][i];
-            
-        }
-        arr2.push_back(total);
-        arr.push_back(arr2);
-   }
-    return arr;
+    vector<vector<int>> matrix;
+    for (int i = 0; i < 2; i++) {
+        int a = 0;
+        int b = 0;
+        for (int j = 0; j < 3; j++) {
+            a += A[i][j] * B[j][0]; 
+            b += A[i][j] * B[j][1];
+        } 
+        matrix.push_back({a, b});
+    }
+    return matrix;
 }
 
 
