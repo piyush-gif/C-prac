@@ -626,60 +626,107 @@ using namespace std;
 //  { 11, 12 }
 //};
 
-vector<vector<int>> matrixMul(vector<vector<int>> A, vector<vector<int>> B) {
-    vector<vector<int>> matrix;
-    for (int i = 0; i < 2; i++) {
-        int a = 0;
-        int b = 0;
-        for (int j = 0; j < 3; j++) {
-            a += A[i][j] * B[j][0]; 
-            b += A[i][j] * B[j][1];
-        } 
-        matrix.push_back({a, b});
-    }
-    return matrix;
-}
+//vector<vector<int>> matrixMul(vector<vector<int>> A, vector<vector<int>> B) {
+//    vector<vector<int>> matrix;
+//    for (int i = 0; i < A.size(); i++) {
+//        vector<int> array;
+//        for (int j = 0; j < B[0].size(); j++) {
+//            int a = 0;
+//            for (int k = 0; k < B.size(); k++) {
+//                a += A[i][k] * B[k][j];
+//            }
+//            array.push_back(a);
+//        }
+//        matrix.push_back(array);
+//    }
+//    return matrix;
+//}
+//
+//void isMatrixMul(vector<vector<int>> A, vector<vector<int>> B) {
+//    for (int i = 0; i < A.size(); i++) {
+//        if (A[i].size() != B.size()) throw "matrix multiplication not possible";
+//    }  
+//    for (int i = 1; i < B.size(); i++) {
+//        if (B[0].size() != B[i].size()) throw "matrix multiplication not possible";
+//    }
+//}
+//
+//void printMatrix(vector<vector<int>> array) {
+//
+//    for (int i = 0; i < array.size(); i++) {
+//        for (int j = 0; j < array[i].size(); j++) {
+//
+//            std::cout << array[i][j] << " ";
+//        }
+//        std::cout << endl;
+//    }
+//}
+//
+//
+//int main() {
+//    
+//    try {
+//        vector<vector<int>> A = {{1, 2, 3},
+//                                {4, 5, 6} };
+//
+//        vector<vector<int>> B = {{1, 4, 5, 8},
+//                                 {2, 5, 6, 9},
+//                                 {3, 6, 7, 10}};
+//                                  
+//        isMatrixMul(A, B);
+//        vector<vector<int>> array = matrixMul(A, B);
+//        printMatrix(array);
+//       
+//
+//    }
+//    catch (const char* msg) {
+//        std::cout << msg;
+//    }
+//
 
 
-void isMatrixMul(vector<vector<int>> A, vector<vector<int>> B) {
-    for (int i = 0; i < A.size(); i++) {
-        if (A[i].size() != B.size()) throw "matrix multiplication not possible";
-    }  
-    for (int i = 1; i < B.size(); i++) {
-        if (B[0].size() != B[i].size()) throw "matrix multiplication not possible";
-    }
-}
-
-void printMatrix(vector<vector<int>> array) {
-
-    for (int i = 0; i < array.size(); i++) {
-        for (int j = 0; j < array[i].size(); j++) {
-
-            std::cout << array[i][j] << " ";
-        }
-        std::cout << endl;
-    }
-}
 
 
-int main() {
-    
-    try {
-        vector<vector<int>> A = {{1, 2, 3},
-                                {4, 5, 6}};
-
-        vector<vector<int>> B = {{7, 8},
-                                 {9, 10},
-                                 {11, 12}};
-        isMatrixMul(A, B);
-        vector<vector<int>> array = matrixMul(A, B);
-
-        printMatrix(array);
-       
-
-    }
-    catch (const char* msg) {
-        std::cout << msg;
-    }
-
-}
+//#include<iostream>
+//void diamond(int num) {
+//	for (int i = 0; i < num; i++) {
+//		std::string a = "";
+//		for (int j = i  ; j < num; j++) {
+//			a += " ";
+//		}
+//		for (int k = 0; k - 1 < i; k++) {
+//			a += "*";
+//		}
+//		for (int l = 0; l < i; l++) {
+//			a += "*";
+//		}
+//		std::cout << a << std::endl;
+//		
+//	}
+//	std::string a = "";
+//
+//	for (int i = 0; i < num * 2 + 1; i++) {
+//		a += "*";
+//	}
+//
+//	std::cout << a << std::endl;
+//	for (int i = 0; i < num; i++) {
+//		std::string a = "";
+//		for (int j = 0; j < i + 1; j++) {
+//			a += " ";
+//		}
+//		for (int k = i; k < num; k++) {
+//			a += "*";
+//		}
+//		for (int l = i + 1; l < num; l++) {
+//			a += "*";
+//		}
+//		std::cout << a << std::endl;
+//	}
+//
+//}
+//
+//int main() {
+//	diamond(10);
+//	return 0;
+//}
