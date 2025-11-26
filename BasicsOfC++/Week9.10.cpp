@@ -135,45 +135,45 @@
 
 
 
-#include<iostream>
-#include<vector>
-
-std::vector<int> sort(std::vector<int>& array) {
-	for (int i = 0; i < array.size() - 1; i++) {
-		int temp;
-		for (int j = i + 1; j < array.size(); j++) {
-			if (array[i] > array[j]) {
-				temp = array[j];
-				array[j] = array[i];
-				array[i] = temp;
-			}
-		}
-	}
-	return array;
-}
-
-std::vector<int> bubbleSort(std::vector<int>& array) {
-	for (int i = 0; i < array.size() - 1; i++) {
-		int temp;
-		for (int j = 0; j < array.size() - 1 - i; j++) {
-			if (array[j] > array[j + 1]) {
-				temp = array[j + 1];
-				array[j + 1] = array[j];
-				array[j] = temp;
-			}
-		}
-	}
-	return array;
-}
-
-int main() {
-	std::vector<int> array = {5,4,3,2,1};
-	std::vector<int> a = bubbleSort(array);
-
-	for (int i = 0; i < array.size(); i++) {
-		std::cout << a[i];
-	}
-}
+//#include<iostream>
+//#include<vector>
+//
+//std::vector<int> sort(std::vector<int>& array) {
+//	for (int i = 0; i < array.size() - 1; i++) {
+//		int temp;
+//		for (int j = i + 1; j < array.size(); j++) {
+//			if (array[i] > array[j]) {
+//				temp = array[j];
+//				array[j] = array[i];
+//				array[i] = temp;
+//			}
+//		}
+//	}
+//	return array;
+//}
+//
+//std::vector<int> bubbleSort(std::vector<int>& array) {
+//	for (int i = 0; i < array.size() - 1; i++) {
+//		int temp;
+//		for (int j = 0; j < array.size() - 1 - i; j++) {
+//			if (array[j] > array[j + 1]) {
+//				temp = array[j + 1];
+//				array[j + 1] = array[j];
+//				array[j] = temp;
+//			}
+//		}
+//	}
+//	return array;
+//}
+//
+//int main() {
+//	std::vector<int> array = {5,4,3,2,1};
+//	std::vector<int> a = bubbleSort(array);
+//
+//	for (int i = 0; i < array.size(); i++) {
+//		std::cout << a[i];
+//	}
+//}
 
 
 

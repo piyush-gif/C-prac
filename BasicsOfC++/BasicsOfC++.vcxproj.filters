@@ -72,7 +72,7 @@
     <ClCompile Include="Week9.10.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Week9.11.cpp">
+    <ClCompile Include="Class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sudoku.cpp">
