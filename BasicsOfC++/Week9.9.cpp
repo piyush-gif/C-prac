@@ -730,3 +730,35 @@ using namespace std;
 //	diamond(10);
 //	return 0;
 //}
+
+
+
+#include<iostream>
+#include<vector>
+
+void check(std::vector<vector<int>> array) {
+	std::map<int, int> mymap;
+	int k = 0;
+	for (int i = 0; i < array.size(); i++) {
+		for (int j = 0; i < array.size(); j++) {
+			for (int k = 0; k < array.size(); k++) {
+
+			}
+		}
+	}
+}
+
+void print(std::vector<int> array) {
+	
+}
+
+int main() {
+	std::vector<vector<int>> array = { { 1, 2, 3, 4, 5, 6, 7, 8, 9},
+									   { 4, 5, 6, 7, 8, 9, 1, 2, 3},
+									   { 7, 8, 9, 0, 1, 2, 4, 5, 6},
+									   { 1, 2, 3, 4, 5, 6, 7, 8, 9},
+									   { 4, 5, 6, 7, 8, 9, 1, 2, 3},
+									   { 7, 8, 9, 0, 1, 2, 4, 5, 6} }
+		;
+	check(array);
+}
