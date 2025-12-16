@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="prac.cpp" />
     <ClCompile Include="sudoku.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Week1.cpp" />
