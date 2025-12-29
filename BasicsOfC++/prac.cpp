@@ -71,90 +71,57 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-void check(vector<vector<string>>& board) {
+bool check(vector<vector<string>>& board) {
 	string x = "X";
 	string o = "O";
-	int count;
-	
-	for (int i = 0; i < board.size(); i++) {
-		count = 0;
-		for (int j = 0; j < board.size(); j++) {
-			if (board[i][j] == x) {
-				count += 1;
-			}
-		}
-		if (count == 3) {
-			cout << "X wins";
-		}
-
-	}
-	for (int i = 0; i < board.size(); i++) {
-		count = 0;
-		for (int j = 0; j < board.size(); j++) {
-			if (board[i][j] == o) {
-				count += 1;
-			}
-		}
-		if (count == 3) {
-			cout << "O wins";
-		}
-
-	}
-	for (int i = 0; i < board.size(); i++) {
-		count = 0;
-		if (board[i][i] == x) {
-			count += 1;
-		}
-		if (count == 3) {
-			cout << "X wins";
-		}
-	}
-	for (int i = 0; i < board.size(); i++) {
-		count = 0;
-		if (board[i][i] == o) {
-			count += 1;
-		}
-		if (count == 3) {
-			cout << "O wins";
-		}
-	}
 
 	for (int i = 0; i < board.size(); i++) {
-		for (int j = board.size() - 1; j > 0; j--) {
-			count = 0;
-			if (board[i][i] == o) {
-				count += 1;
-			}
-			if (count == 3) {
-				cout << "X wins";
+		if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+			if (board[i][0] == x || board[i][0] == o) {
+				cout << board[i][0] << " is the winner!";
+				return true;
 			}
 		}
-	}
-	for (int i = 0; i < board.size(); i++) {
-		for (int j = board.size() - 1; j > 0; j--) {
-			count = 0;
-			if (board[i][i] == o) {
-				count += 1;
-			}
-			if (count == 3) {
-				cout << "O wins";
+		if (board[0][i] == board[1][i] && board[0][i] == board[2][i]) {
+			if (board[0][i] == x || board[0][i] == o) {
+				cout << board[0][i] << " is the winner!";
+				return true;
 			}
 		}
 	}
 
+	if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+		if (board[0][0] == o || board[0][0] == x) {
+			cout << board[0][0] << " is the winner!";
+			return true;
+		}
+		
+	}
+	if ( board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+		if (board[0][2] == o || board[0][2] == x) {
+			cout << board[0][2] << " is the winner!";
+			return true;
+		}
+	}
+	return false;
 }
 vector<vector<string>> move(vector<vector<string>>& board, string& playerMove, string& sign) {
 	int x = playerMove[0] - '0';
 	int y = playerMove[1] - '0';
-	for (int i = 0; i < board.size(); i++) {
-		for (int j = 0; j < board.size(); j++) {
-			if (i == x && j == y) {
-				board[i][j] = sign;
+	if (board[x][y] == "_") {
+		for (int i = 0; i < board.size(); i++) {
+			for (int j = 0; j < board.size(); j++) {
+				if (i == x && j == y) {
+					board[i][j] = sign;
+				}
 			}
 		}
 	}
+	else {
+		std::cout << "wrong input" <<endl;
+	}
+	
 	return board;
-	check(board);
 }
 
 
@@ -180,15 +147,13 @@ int main() {
 	while (playing) {
 		cout << "Player Move:";
 		cin >> playerMove;
+
 		move(board, playerMove, symbol[1 - sign]);
 		displayBoard(board);
+		
 		sign = 1 - sign;
-
-		if (playerMove == "exit") {
+		if (check(board)) {
 			playing = false;
-			break;
-		}
+		};
 	}
-
-	displayBoard(board);
 }
