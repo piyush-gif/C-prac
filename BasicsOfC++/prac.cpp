@@ -89,38 +89,68 @@ bool check(vector<vector<string>>& board) {
 			}
 		}
 	}
+	if (board[0][0] == o || board[0][2] == x || board[0][2] == o || board[0][0] == x ) {
+		string index = board[0][0];
+		int count = 0;
+		for (int i = 0; i < board.size(); i++) {
+			if (index == board[i][i]) {
+				count++;
+			}
+		}
+		if (count == 3) {
+			cout << board[0][0] << " is the winner";
+			return true;
 
-	if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
-		if (board[0][0] == o || board[0][0] == x) {
-			cout << board[0][0] << " is the winner!";
-			return true;
 		}
-		
-	}
-	if ( board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
-		if (board[0][2] == o || board[0][2] == x) {
-			cout << board[0][2] << " is the winner!";
-			return true;
+		count = 0;
+		index = board[0][2];
+		for (int i = 0; i < board.size(); i++) {
+			
+			for (int j = board.size() - 1; j >= 0; j--) {
+				if (index == board[i][j]) {
+					count++;
+					std::cout << count;
+				}
+			}
+			if (count == 3) {
+				cout << board[0][2] << " is the winner!";
+				return true;
+			}
 		}
 	}
+
+	//if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+	//	if (board[0][0] == o || board[0][0] == x) {
+	//		cout << board[0][0] << " is the winner!";
+	//		return true;
+	//	}
+
+	//}
+	
+	//if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+	//	if (board[0][2] == o || board[0][2] == x) {
+	//		cout << board[0][2] << " is the winner!";
+	//		return true;
+	//	}
+	//}
 	return false;
 }
-vector<vector<string>> move(vector<vector<string>>& board, string& playerMove, string& sign) {
+vector<vector<string>> move(vector<vector<string>>& board, string& playerMove, string& symbol, int& sign) {
 	int x = playerMove[0] - '0';
 	int y = playerMove[1] - '0';
 	if (board[x][y] == "_") {
 		for (int i = 0; i < board.size(); i++) {
 			for (int j = 0; j < board.size(); j++) {
 				if (i == x && j == y) {
-					board[i][j] = sign;
+					board[i][j] = symbol;
 				}
 			}
 		}
 	}
 	else {
-		std::cout << "wrong input" <<endl;
+		sign = 0;
+		std::cout << "wrong input" << endl;
 	}
-	
 	return board;
 }
 
@@ -148,12 +178,17 @@ int main() {
 		cout << "Player Move:";
 		cin >> playerMove;
 
-		move(board, playerMove, symbol[1 - sign]);
-		displayBoard(board);
-		
-		sign = 1 - sign;
-		if (check(board)) {
-			playing = false;
-		};
+		if (playerMove[0] - '0' >= 0 && playerMove[1] - '0' <= 2){
+			move(board, playerMove, symbol[1 - sign], sign);
+			displayBoard(board);
+
+			sign = 1 - sign;
+			if (check(board)) {
+				playing = false;
+			};
+		}
+		else {
+			cout << "try numbers between 0 to 2";
+		}
 	}
 }
