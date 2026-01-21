@@ -1,3 +1,2 @@
-﻿  prac.cpp
-D:\BasicsOfC++\BasicsOfC++\prac.cpp(103,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  BasicsOfC++.vcxproj -> D:\BasicsOfC++\x64\Debug\BasicsOfC++.exe
+﻿  Week10.cpp
+  BasicsOfC++.vcxproj -> D:\github projects\BasicsOfC++\x64\Debug\BasicsOfC++.exe

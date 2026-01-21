@@ -41,5 +41,61 @@
 //	P2->stats();
 //	P1->stats();
 //}
+
+
+//#include<iostream>
+//
+//#include<vector>
+//using namespace std;
 //
 //
+//struct Node {
+//	int data;
+//	Node* next;
+//	Node* prev;
+//};
+//
+//void display(Node*& head) {
+//	if (head == nullptr) return;
+//	Node* temp = head;
+//
+//	while (temp != nullptr) {
+//		cout << temp->data << endl;
+//		temp = temp->next;
+//	}	
+//}
+//void deleted(Node*& head, int num) {
+//	if (head == nullptr) return;
+//	Node* temp = head;
+//	if (num == temp->data) {
+//		head = head->next;
+//		head->prev = nullptr;
+//		delete temp;
+//	}
+//
+//	while (temp->next != nullptr && temp->data != num) {
+//		temp = temp->next;
+//	}
+//
+//	if (temp == nullptr) return;
+//	if (temp->next != nullptr) {
+//		temp->prev->next = temp->next;
+//	}
+//	if (temp->prev != nullptr) {
+//		temp->next->prev = temp->prev;
+//	}
+//	delete temp;
+//}
+//
+//
+//
+//int main() {
+//	Node* head = new Node{ 1, nullptr, nullptr };
+//	Node* second = new Node{ 2, nullptr, head };
+//	head->next = second;
+//	Node* third = new Node{ 3, nullptr, second };
+//	second->next = third;
+//	int a = 2;
+//	deleted(head, a);
+//	display(head);
+//}
