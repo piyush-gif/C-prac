@@ -14,27 +14,26 @@
 //	•	Generate a hardcoded number(e.g., 7).
 //	•	Use a while loop to let the player guess, providing “too high” or “too low” hints.
 //	•	Track guesses and display the total when they win.
-
+//
 // write a program that takes a player's name(std::string) and health(int) as input and prints a status message (e.g. "alice has 100 health").
 
 
-//#include<iostream>
-
+#include<iostream>
+//
 //int main() {
 //	std::string name;
 //	int health;
 //
-//	std::cout << "Enter name" << std::endl;
+//	std::cout << "Enter your name";
 //	std::cin >> name;
-//
-//	std::cout << "Enter the hp" << std::endl;
+//	std::cout << "Enter your health";
 //	std::cin >> health;
 //
+//	std::cout << "The name is :" << name << ". The health is : " << health;
 //
-//	std::cout << name << " has " << health << " hp";
 //}
 
-// Create a program that calculates damage dealt based on attack power (int) and enemy defence  (int) using  arthmetic (e.g. damage = attack - defence).
+ //Create a program that calculates damage dealt based on attack power (int) and enemy defence  (int) using  arthmetic (e.g. damage = attack - defence).
 
 
 //int main() {
@@ -52,42 +51,47 @@
 //	std::cout << damage << std:: endl;
 //}
 
-// Write a loop to print 5x5 grid of astrisks(*) to stimulate game map.
-
-//void main() {
-//	char a ='*';
-//
-//	for (int i = 0; i <= 5; i++) {
-//		for (int j = 0; j <= 5; j++) {
-//			std::cout << a;
-//		}
-//		std::cout << "\n";
-//	}
-//
-//}
-
-// Make a number guessing game where the user inputs a number (1- 10) and gets feedback ("correct!" or "try again") untill they guess a hardcoded number.
+ //Write a loop to print 5x5 grid of astrisks(*) to stimulate game map.
 
 //int main() {
-//	int guessNumber;
-//	int hardcoded = 5;
-//	
-//	while (true) {
-//		std::cout << "Guess the number : ";
-//		std::cin >> guessNumber;
-//		if (guessNumber == hardcoded) {
-//			std::cout << "Correct!";
-//			break;
+//	std::string arr = "";
+//	for (int i = 0; i < 5; i++) {
+//		arr = "";
+//		for (int j = 0; j < i + 1;	 j++) {
+//			arr += "*";
 //		}
-//		else {
-//			std::cout << "Try again \n";
+//		for (int k = i; k < 5; k++) {
+//			arr += " ";
 //		}
+//		std::cout << arr << std::endl;
+//		
 //	}
+//
+//
+//	return 0;
+//}
+
+ //Make a number guessing game where the user inputs a number (1- 10) and gets feedback ("correct!" or "try again") untill they guess a hardcoded number.
+
+//int main() {
+//	int c1 = 4;
+//	int p1;
+//	std::cout << "Take a guess : ";
+//	std::cin >> p1;
+//
+//	while (c1 != p1) {
+//		
+//		std::cout << "Wrong! Take another guess : ";
+//		std::cin >> p1;
+//
+//	}
+//	std::cout << "Correct!!";
+//
 //	return 0;
 //}
 
 
-// Create a simple menu with 3 options (eg., "Start Game" , "Settings", "Quit"
+ //Create a simple menu with 3 options (eg., "Start Game" , "Settings", "Quit"
 
 
 //int main() {
@@ -113,10 +117,10 @@
 
 
 
-// Mini-Project: Number Guessing Game
-// Generate a hardcoded number(e.g., 7).
-// Use a while loop to let the player guess, providing “too high” or “too low” hints.
-// Track guesses and display the total when they win.
+ //Mini-Project: Number Guessing Game
+ //Generate a hardcoded number(e.g., 7).
+ //Use a while loop to let the player guess, providing “too high” or “too low” hints.
+ //Track guesses and display the total when they win.
 //#include<iostream>
 //int main() {
 //	int number = 7;
